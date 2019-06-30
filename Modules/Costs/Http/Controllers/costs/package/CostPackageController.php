@@ -14,7 +14,7 @@ class CostPackageController extends Controller
      */
     public function index()
     {
-        return view('costs::index');
+        return view('costs::costs.package.index');
     }
 
     /**

@@ -11,6 +11,22 @@
 |
 */
 
+Route::get('/test', function(){
+    require_once '/path/to/Faker/src/autoload.php';
+    // alternatively, use another PSR-4 compliant autoloader
+
+    // use the factory to create a Faker\Generator instance
+    $faker = Faker\Factory::create();
+
+    // generate data by accessing properties
+    echo $faker->name;
+    // 'Lucy Cechtelar';
+    echo $faker->address;
+    // "426 Jordy Lodge
+    // Cartwrightshire, SC 88120-6700"
+    echo $faker->text;
+});
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -25,4 +41,4 @@ Route::get('/user', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/user/{user_id}', 'HomeController@index')->name('user');

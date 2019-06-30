@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/user';
 
     /**
      * Create a new controller instance.
@@ -60,7 +60,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \Models\User
      */
     protected function create(array $data)
     {

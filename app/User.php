@@ -2,13 +2,15 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +18,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'login', 'password', 'address', 'CP', 'city', 'hiring_date', 'role'
+        'first_name',
+        'last_name',
+        'email',
+        'login',
+        'password',
+        'address',
+        'CP',
+        'city',
+        'hiring_date',
+        'role',
     ];
 
     /**
@@ -36,4 +47,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getHiringDateAttribute()
+    {
+        $this->hiring_date->format('Y-m-d');
+    }
+
+    public function setSiringDateAttribute($value)
+    {
+        $this->attributes['hiring_date'] = Carbon::createFromFormat('Y-m-d', $request->input('hiring_date'));
+    }
+
 }
