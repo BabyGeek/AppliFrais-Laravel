@@ -3,6 +3,7 @@
 namespace Modules\Costs\Http\Requests\Costs\package;
 
 use Illuminate\Foundation\Http\FormRequest;
+use LaraFlash;
 
 class CostPackageRequest extends FormRequest
 {
@@ -41,10 +42,7 @@ class CostPackageRequest extends FormRequest
         {
             if ($validator->errors()->count() > 0)
             {
-                laraflash()->message()
-                            ->content("Il y a une erreur avec votre formulaire, veuillez saisir correctement les champs indiqués")
-                            ->title('Erreur de validation du formulaire')
-                            ->danger();
+                LaraFlash::warning("Il y a une erreur avec votre formulaire, veuillez saisir correctement les champs indiqués")->keep();
             }
         });
     }

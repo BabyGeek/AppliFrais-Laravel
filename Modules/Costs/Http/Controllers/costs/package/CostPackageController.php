@@ -14,6 +14,8 @@ use Modules\Costs\Http\Requests\Costs\package\CostPackageRequest;
 use Modules\Costs\Http\Requests\Costs\package\CostPackageDeleteRequest;
 use Modules\Costs\Enum\CostType;
 use Modules\Costs\Enum\CostState;
+use LaraFlash;
+
 
 class CostPackageController extends Controller
 {
@@ -44,8 +46,8 @@ class CostPackageController extends Controller
             $user = User::findOrFail($user_id);
             $costs = Cost::all();
             return view('costs::costs.package.create', compact('user', 'costs'));
-
-        } catch (ModelNotFoundException $exception) {
+        } catch (ModelNotFoundException $exception)
+        {
             return redirect()->route('login');
         }
     }
@@ -77,14 +79,14 @@ class CostPackageController extends Controller
 
             if ($package)
                 {
-                    laraflash()->message()->content("Le frais forfait a bien été ajouté a votre base de donnée")->title('Frais forfait ajouté')->type('success');
+                LaraFlash::add('Frais forfait entrée avec succès', array('type' => 'success'));
                 }else
                 {
-                    laraflash()->message()->content("Le frais forfait n'a pas été ajouté a votre base de donnée")->title('Erreur d\'ajout du frais forfait')->danger();
+                LaraFlash::add("Erreur lors de l'entrée du frais forfait", array('type' => 'danger'));
                 }
             }catch(ModelNotFoundException $exception)
             {
-                laraflash()->message()->content("Erreur de connexion à la base de donnée")->title('Base de donnée introuvable')->danger();
+                LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
             }
             return redirect()->route('module-costs.package.index', ['user_id' => $user->id]);
     }
@@ -113,7 +115,7 @@ class CostPackageController extends Controller
             $costs = Cost::all();
             return view('costs::costs.package.edit', compact('user', 'package', 'states', 'costs'));
         }catch(ModelNotFoundException $exception){
-            laraflash()->message()->content("Le frais forfait demandé est introuvable")->title('Projet introuvable')->danger();
+            LaraFlash::add("Le frais forfait demandé est introuvable", array('type' => 'warning'));
             return redirect()->route('module-costs.package.index');
         }
     }
@@ -138,24 +140,24 @@ class CostPackageController extends Controller
     {
         try
         {
-
             $package = CostPackage::findOrFail($id);
             $package->user()->dissociate();
             $package->cost()->dissociate();
             $package->delete();
-            $user = $package->user;
 
             if($package)
             {
-                laraflash()->message()->content("Le frais forfait a bien été supprimée")->title('Frais forfait supprimée')->type('success');
+            LaraFlash::add("Le frais forfait a bien été supprimée", array('type' => 'success'));
             }else
             {
-                laraflash()->message()->content("Le frais forfait n'a pas été supprimée")->title('Erreur lors de la suppression du frais forfait')->danger();
+                LaraFlash::add("Le frais forfait n'a pas été supprimée", array('type' => 'danger'));
+
             }
         }catch(ModelNotFoundException $exception)
         {
-            laraflash()->message()->content("Erreur de connexion à la base de donnée")->title('Base de donnée introuvable')->danger();
+            LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
+
         }
-        return redirect()->route('module-costs.package.index', ['user_id' => $user->id]);
+        return redirect()->route('module-costs.package.index', ['user_id' => $user_id]);
     }
 }

@@ -1,9 +1,5 @@
 @extends('layouts.master', ['page_name' => $user->first_name.' '.$user->last_name. ' - Mes frais forfait - Modifier un frais forfait'])
 
-@section('alert')
-{!! laraflash()->render() !!}
-@endsection
-
 @section('heading-buttons')
 <p>
     <a href="{{ route('module-costs.package.index', ['user_id' => $user->id]) }}" class="btn btn-sm btn-info shadow-sm">

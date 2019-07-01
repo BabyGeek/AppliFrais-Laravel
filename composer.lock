@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07fb99b1c125d57a23fcd3bb2fea88e0",
+    "content-hash": "4a032503741c1bf6f6f1e48d46d59bbe",
     "packages": [
         {
             "name": "appstract/laravel-blade-directives",
@@ -198,58 +198,6 @@
             "time": "2019-01-31T20:38:55+00:00"
         },
         {
-            "name": "coderello/laraflash",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/coderello/laraflash.git",
-                "reference": "ba8f5f3cf0bc2b2be87abda65f41f32743ef9357"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/coderello/laraflash/zipball/ba8f5f3cf0bc2b2be87abda65f41f32743ef9357",
-                "reference": "ba8f5f3cf0bc2b2be87abda65f41f32743ef9357",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "laravel/framework": "5.5.*|5.6.*|5.7.*|5.8.*",
-                "php": "^7.2"
-            },
-            "require-dev": {
-                "orchestra/testbench": "~3.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Coderello\\Laraflash\\Providers\\LaraflashServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Coderello\\Laraflash\\": "src/"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Advanced flash messages for Laravel.",
-            "keywords": [
-                "advanced",
-                "flash",
-                "laraflash",
-                "laravel",
-                "messages"
-            ],
-            "time": "2019-03-05T20:51:11+00:00"
-        },
-        {
             "name": "cviebrock/eloquent-sluggable",
             "version": "4.8.0",
             "source": {
@@ -311,6 +259,61 @@
                 "sluggable"
             ],
             "time": "2019-03-01T05:04:21+00:00"
+        },
+        {
+            "name": "devmarketer/laraflash",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DevMarketer/LaraFlash.git",
+                "reference": "9dad87b942b75b7bbda8c397cf4af5e14e6291a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DevMarketer/LaraFlash/zipball/9dad87b942b75b7bbda8c397cf4af5e14e6291a9",
+                "reference": "9dad87b942b75b7bbda8c397cf4af5e14e6291a9",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DevMarketer\\LaraFlash\\LaraFlashServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaraFlash": "DevMarketer\\LaraFlash\\LaraFlashFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "DevMarketer\\LaraFlash": "src/"
+                },
+                "files": [
+                    "src/DevMarketer/LaraFlash/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "J. Alexander Curtis",
+                    "email": "jalexandercurtis@gmail.com"
+                }
+            ],
+            "description": "A powerful and flexible flash notifications system. Improving over built-in Laravel Flash messaging functionality.",
+            "homepage": "https://github.com/DevMarketer/LaraFlash",
+            "keywords": [
+                "flash",
+                "laraflash",
+                "laravel",
+                "messages",
+                "notifications",
+                "session"
+            ],
+            "time": "2017-11-14T23:05:12+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

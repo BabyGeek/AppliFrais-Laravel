@@ -31,10 +31,6 @@
             @include('layouts.partials.topbar')
             <!-- /top navigation -->
 
-            <!-- Alert -->
-            @yield('alert')
-            <!-- /Alert -->
-
             <!-- page content -->
             <div class="right_col" role="main">
                 <div class="">
@@ -66,11 +62,11 @@
         </div>
     </div>
 
+    <!-- JQuery -->
+    <script src="/vendor/jquery/dist/jquery.min.js" type="text/javascript"></script>
+
     <!-- Google Analytics -->
     <script async="" src="https://www.google-analytics.com/analytics.js"></script>
-
-    <!-- jQuery -->
-    <script src="/vendor/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap -->
     <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -123,15 +119,6 @@
     <!-- Date -->
     <script src="/vendor/DateJS/build/date.js" type="text/javascript"></script>
 
-    <!-- JQuery vmap -->
-    <script src="/vendor/jqvmap/dist/jquery.vmap.js" type="text/javascript"></script>
-
-    <!-- vmap World -->
-    <script src="/vendor/jqvmap/dist/maps/jquery.vmap.world.js" type="text/javascript"></script>
-
-    <!-- vmap examples -->
-    <script src="/vendor/jqvmap/examples/js/jquery.vmap.sampledata.js" type="text/javascript"></script>
-
     <!-- Moment -->
     <script src="/vendor/moment/min/moment.min.js" type="text/javascript"></script>
 
@@ -144,7 +131,11 @@
     <!-- Custom Theme Scripts -->
     <script src="/js/custom.min.js"></script>
 
-    @yield('outside-content')
+    <!-- Alert -->
+    @include('layouts.partials.toast')
+    <!-- /Alert -->
+
+    @yield('script')
 </body>
 
 </html>

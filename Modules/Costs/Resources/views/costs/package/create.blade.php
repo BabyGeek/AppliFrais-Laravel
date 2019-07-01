@@ -1,9 +1,5 @@
 @extends('layouts.master', ['page_name' => $user->first_name.' '.$user->last_name. ' - Mes frais forfait - Ajouter un frais forfait'])
 
-@section('alert')
-{!! laraflash()->render() !!}
-@endsection
-
 @section('heading-buttons')
 <p>
     <a href="{{ route('module-costs.package.index', ['user_id' => $user->id]) }}" class="btn btn-sm btn-info shadow-sm">
@@ -25,6 +21,6 @@
 
 @section('content')
 <div class="row">
-    @include('costs::forms.costs.package.form', ['legend' => 'Formulaire pour ajouter un frais forfait', 'action' =>  route('module-costs.package.store', ['user_id'=> $user->id]), 'method'=>'PUT','txtbtn' => 'Modifier' ])
+    @include('costs::forms.costs.package.form', ['legend' => 'Formulaire pour ajouter un frais forfait', 'action' =>  route('module-costs.package.store', ['user_id'=> $user->id]), 'method'=>'POST','txtbtn' => 'Ajouter' ])
 </div>
 @endsection

@@ -10,5 +10,25 @@
                 </ul>
             </li>
             <li><a href="#"><i class="fa fa-desktop"></i> Historique </a></li>
-        </div>
+        </ul>
+    </div>
+    @if (Auth::user()->role == Enum\UserRole::ADMINISTRATOR)
+    <div class="menu_section">
+        <h3>Menu Admin</h3>
+        <ul class="nav side-menu">
+            <li>
+                <a href="http://">
+                    <i class="fa fa-user"></i>
+                    Ajouter un utilisateur
+                </a>
+            </li>
+            <li>
+                <a href="/test">
+                    <i class="fa fa-cogs"></i>
+                    Tests
+                </a>
+            </li>
+        </ul>
+    </div>
+    @endif
 </div>
