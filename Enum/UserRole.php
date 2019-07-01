@@ -5,11 +5,11 @@ use Konekt\Enum\Enum;
 
 class UserRole extends Enum
 {
-    const __DEFAULT      = self::VISITOR;
+    const __DEFAULT = self::VISITOR;
 
-    const VISITOR         = 'visitor';
-    const ADMINISTRATOR      = 'administrator';
-    const ACCOUNTING     = 'accounting';
+    const VISITOR = 'visitor';
+    const ADMINISTRATOR = 'administrator';
+    const ACCOUNTING = 'accounting';
 
     public static $labels = [];
 

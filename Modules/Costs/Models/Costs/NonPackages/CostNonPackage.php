@@ -2,6 +2,7 @@
 
 namespace Modules\Costs\Models;
 
+use Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -27,5 +28,10 @@ class CostNonPackage extends Model
                 'source' => 'label'
             ]
         ];
+    }
+
+    public function user()
+    {
+        return $this->belongsTp(User::class);
     }
 }

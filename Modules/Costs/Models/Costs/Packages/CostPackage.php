@@ -2,6 +2,9 @@
 
 namespace Modules\Costs\Models;
 
+use Models\User;
+use Carbon\Carbon;
+use Modules\Costs\Models\Costs\Cost;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,8 +15,8 @@ class CostPackage extends Model
     protected $table = 'cost_packages';
 
     protected $fillable = [
-        'justificatory',
-        'justificatory_number',
+        'user_id',
+        'cost_id',
         'value',
         'date',
         'state',
@@ -25,11 +28,21 @@ class CostPackage extends Model
 
     public function getDateAttribute()
     {
-        $this->date->format('Y-m-d');
+        $this->date->format('d-m-Y');
     }
 
     public function setDateAttribute($value)
     {
-        $this->attributes['date'] = Carbon::createFromFormat('Y-m-d', $request->input('date'));
+        $this->attributes['date'] = Carbon::today();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function cost()
+    {
+        return $this->belongsTo(Cost::class, 'cost_id');
     }
 }

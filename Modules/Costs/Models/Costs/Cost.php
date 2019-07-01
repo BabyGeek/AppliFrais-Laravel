@@ -2,13 +2,13 @@
 
 namespace Modules\Costs\Models\Costs;
 
+use Modules\Costs\Models\CostPackage;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class Cost extends Model
 {
-    use Sluggable, SoftDeletes;
+    use Sluggable;
 
     protected $table = 'costs';
 
@@ -25,5 +25,10 @@ class Cost extends Model
                 'source' => 'name'
             ]
         ];
+    }
+
+    public function packages()
+    {
+        return $this->hasMany(CostPackage::class);
     }
 }

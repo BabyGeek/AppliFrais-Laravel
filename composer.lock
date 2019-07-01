@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c78d46371e3f04c628b4b86b30335116",
+    "content-hash": "07fb99b1c125d57a23fcd3bb2fea88e0",
     "packages": [
         {
             "name": "appstract/laravel-blade-directives",
@@ -198,6 +198,58 @@
             "time": "2019-01-31T20:38:55+00:00"
         },
         {
+            "name": "coderello/laraflash",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/coderello/laraflash.git",
+                "reference": "ba8f5f3cf0bc2b2be87abda65f41f32743ef9357"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/coderello/laraflash/zipball/ba8f5f3cf0bc2b2be87abda65f41f32743ef9357",
+                "reference": "ba8f5f3cf0bc2b2be87abda65f41f32743ef9357",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": "5.5.*|5.6.*|5.7.*|5.8.*",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Coderello\\Laraflash\\Providers\\LaraflashServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Coderello\\Laraflash\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Advanced flash messages for Laravel.",
+            "keywords": [
+                "advanced",
+                "flash",
+                "laraflash",
+                "laravel",
+                "messages"
+            ],
+            "time": "2019-03-05T20:51:11+00:00"
+        },
+        {
             "name": "cviebrock/eloquent-sluggable",
             "version": "4.8.0",
             "source": {
@@ -259,61 +311,6 @@
                 "sluggable"
             ],
             "time": "2019-03-01T05:04:21+00:00"
-        },
-        {
-            "name": "devmarketer/laraflash",
-            "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/DevMarketer/LaraFlash.git",
-                "reference": "9dad87b942b75b7bbda8c397cf4af5e14e6291a9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/DevMarketer/LaraFlash/zipball/9dad87b942b75b7bbda8c397cf4af5e14e6291a9",
-                "reference": "9dad87b942b75b7bbda8c397cf4af5e14e6291a9",
-                "shasum": ""
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "DevMarketer\\LaraFlash\\LaraFlashServiceProvider"
-                    ],
-                    "aliases": {
-                        "LaraFlash": "DevMarketer\\LaraFlash\\LaraFlashFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "DevMarketer\\LaraFlash": "src/"
-                },
-                "files": [
-                    "src/DevMarketer/LaraFlash/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "J. Alexander Curtis",
-                    "email": "jalexandercurtis@gmail.com"
-                }
-            ],
-            "description": "A powerful and flexible flash notifications system. Improving over built-in Laravel Flash messaging functionality.",
-            "homepage": "https://github.com/DevMarketer/LaraFlash",
-            "keywords": [
-                "flash",
-                "laraflash",
-                "laravel",
-                "messages",
-                "notifications",
-                "session"
-            ],
-            "time": "2017-11-14T23:05:12+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -826,23 +823,23 @@
         },
         {
             "name": "konekt/enum",
-            "version": "3.0.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/artkonekt/enum.git",
-                "reference": "34e770b69bc8a1713c3845dbfa51e389118b9a56"
+                "reference": "e05d1bccfb77e54b74ad4e3d3bd9d662c62316d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/artkonekt/enum/zipball/34e770b69bc8a1713c3845dbfa51e389118b9a56",
-                "reference": "34e770b69bc8a1713c3845dbfa51e389118b9a56",
+                "url": "https://api.github.com/repos/artkonekt/enum/zipball/e05d1bccfb77e54b74ad4e3d3bd9d662c62316d7",
+                "reference": "e05d1bccfb77e54b74ad4e3d3bd9d662c62316d7",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3"
+                "php": ">=7.0.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "7 - 8"
+                "phpunit/phpunit": "6.2 - 8"
             },
             "type": "library",
             "autoload": {
@@ -866,7 +863,64 @@
                 "enum",
                 "konekt"
             ],
-            "time": "2019-06-24T20:39:03+00:00"
+            "time": "2019-06-25T17:08:18+00:00"
+        },
+        {
+            "name": "konekt/enum-eloquent",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/artkonekt/enum-eloquent.git",
+                "reference": "666c682b0d99f3fa6c07cfde6d7933bbd4fe8e41"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/artkonekt/enum-eloquent/zipball/666c682b0d99f3fa6c07cfde6d7933bbd4fe8e41",
+                "reference": "666c682b0d99f3fa6c07cfde6d7933bbd4fe8e41",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.*",
+                "konekt/enum": "^2.0.2",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "illuminate/events": "5.*",
+                "phpunit/phpunit": "6.3 - 7.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Konekt\\Enum\\Eloquent\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Attila Fulop",
+                    "homepage": "https://github.com/fulopattila122"
+                }
+            ],
+            "description": "Enum attribute casting for Eloquent models",
+            "keywords": [
+                "artkonekt",
+                "eloquent",
+                "enum",
+                "konekt",
+                "laravel"
+            ],
+            "time": "2018-11-04T15:16:42+00:00"
         },
         {
             "name": "laravel/framework",

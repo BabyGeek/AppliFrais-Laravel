@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Modules\Costs\Enum\CostType;
 
 class CreateCostsTable extends Migration
 {
@@ -15,11 +16,8 @@ class CreateCostsTable extends Migration
     {
         Schema::create('costs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('label')->index();
-            $table->string('slug')->index();
+            $table->string('type')->index();
             $table->float('value');
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 

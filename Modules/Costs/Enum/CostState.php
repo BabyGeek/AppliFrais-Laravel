@@ -9,8 +9,8 @@ class CostState extends Enum
 
     const __default = self::CREATED;
 
-    const CREATED = 'standard';
-    const CLOSED = 'roof';
+    const CREATED = 'created';
+    const CLOSED = 'closed';
     const REFUND = 'refund';
     const VALIDATE = 'validate';
 
