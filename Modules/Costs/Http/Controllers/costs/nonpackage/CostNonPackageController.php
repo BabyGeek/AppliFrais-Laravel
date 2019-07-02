@@ -2,10 +2,14 @@
 
 namespace Modules\Costs\Http\Controllers\costs\nonpackage;
 
+use LaraFlash;
+use Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Costs\Models\CostNonPackage;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Modules\Costs\Http\Requests\Costs\nonpackage\CostNonPackageRequest;
 
 class CostNonPackageController extends Controller
 {
@@ -13,18 +17,34 @@ class CostNonPackageController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index($user_id)
     {
-        return view('costs::index');
+        try
+        {
+            $user = User::findOrFail($user_id);
+            return view('costs::costs.nonpackage.index', compact('user'));
+
+        } catch (ModelNotFoundException $exception) {
+            LaraFlash::add('Utilisateur id : '.$user_id. ' non trouvé', array('type' => 'warning'));
+            return redirect()->route('dashboard', ['user_id' => $user->id]);
+        }
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create()
+    public function create($user_id)
     {
-        return view('costs::create');
+        try
+        {
+            $user = User::findOrFail($user_id);
+            return view('costs::costs.nonpackage.create', compact('user'));
+        } catch (ModelNotFoundException $exception)
+        {
+            LaraFlash::add('Utilisateur id : '.$user_id. ' non trouvé', array('type' => 'warning'));
+            return redirect()->route('dashboard', ['user_id' => $user->id]);
+        }
     }
 
     /**
@@ -32,9 +52,39 @@ class CostNonPackageController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store($user_id, CostNonPackageRequest $request)
     {
-        //
+        try
+        {
+            $user = User::findOrFail($user_id);
+            $nonpackage = new CostNonPackage();
+            $nonpackage->label = $request->input('label');
+            $nonpackage->date = $request->input('date');
+            $nonpackage->value = $request->input('value');
+
+            $nonpackage->user()
+            ->associate($user);
+
+            if ($request->file('justificate')->isValid()) {
+                $nonpackage->justificate_name = $request->justificate->getClientOriginalName();
+                $nonpackage->justificate_path = $request->justificate->store('justificates/'.$user->id);
+
+                $request->justificate->store('justificates/'.$user->id);
+            }
+
+            if ($nonpackage->save())
+            {
+                LaraFlash::add('Frais hors forfait entrée avec succès', array('type' => 'success'));
+            }else
+            {
+                LaraFlash::add("Erreur lors de l'entrée du frais hors forfait", array('type' => 'danger'));
+            }
+
+        }catch(ModelNotFoundException $exception)
+        {
+            LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
+        }
+        return redirect()->route('module-costs.nonpackage.index', ['user_id' => $user->id]);
     }
 
     /**
@@ -105,4 +155,5 @@ class CostNonPackageController extends Controller
             return $chaineAleatoire;
         }
     }
+
 }

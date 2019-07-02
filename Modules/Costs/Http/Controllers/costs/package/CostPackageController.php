@@ -31,7 +31,8 @@ class CostPackageController extends Controller
             return view('costs::costs.package.index', compact('user'));
 
         } catch (ModelNotFoundException $exception) {
-            return redirect()->route('login');
+            LaraFlash::add('Utilisateur id : '.$user_id. ' non trouvé', array('type' => 'warning'));
+            return redirect()->route('dashboard', ['user_id' => $user->id]);
         }
     }
 
@@ -48,7 +49,8 @@ class CostPackageController extends Controller
             return view('costs::costs.package.create', compact('user', 'costs'));
         } catch (ModelNotFoundException $exception)
         {
-            return redirect()->route('login');
+            LaraFlash::add('Utilisateur id : '.$user_id. ' non trouvé', array('type' => 'warning'));
+            return redirect()->route('dashboard', ['user_id' => $user->id]);
         }
     }
 

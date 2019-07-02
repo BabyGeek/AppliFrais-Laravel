@@ -21,6 +21,6 @@
 
 @section('content')
 <div class="row">
-    @include('costs::forms.costs.package.form', ['legend' => 'Formulaire pour ajouter un frais forfait', 'action' =>  route('module-costs.package.store', ['user_id'=> $user->id]), 'method'=>'POST', 'txtbtn' => 'Modifier'])
+    @include('costs::forms.costs.package.form', ['legend' => 'Formulaire pour modifier un frais forfait', 'action' =>  route('module-costs.package.store', ['user_id'=> $user->id]), 'method'=>'POST', 'txtbtn' => 'Modifier'])
 </div>
 @endsection

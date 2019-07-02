@@ -40,10 +40,7 @@ class CostNonPackageDeleteRequest extends FormRequest
         {
             if ($validator->errors()->count() > 0)
             {
-                laraflash()->message()
-                ->content("Problème avec votre validation de suppression")
-                ->title('Frais non supprimé')
-                ->danger();
+                LaraFlash::add("Problème avec votre validation de suppression", array('type' => 'warning'));
 
             }
         });

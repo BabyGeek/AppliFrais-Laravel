@@ -20,6 +20,7 @@ class CreateCostNonPackagesTable extends Migration
             $table->float('value')->nullable();
             $table->string('label')->nullable();
             $table->string('slug')->nullable();
+            $table->string('justificate_path')->nullable();
             $table->string('justificate_name')->nullable();
             $table->string('state')->default(CostState::defaultValue())->index();
             $table->date('date')->nullable();

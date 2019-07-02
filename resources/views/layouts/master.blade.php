@@ -131,6 +131,10 @@
     <!-- Custom Theme Scripts -->
     <script src="/js/custom.min.js"></script>
 
+    <!-- Flatpickr -->
+    <script src="/vendor/flatpickr/flatpickr.js"></script>
+    <script src="/vendor/flatpickr/fr.js"></script>
+
     <!-- Alert -->
     @include('layouts.partials.toast')
     <!-- /Alert -->

@@ -14,7 +14,10 @@ class CostNonPackageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'label' => 'required|string|max:30',
+            'date' => 'required|date',
+            'value' => 'required|numeric',
+            'justificate' => 'file|mimes:jpeg,pdf,png',
         ];
     }
 
@@ -26,5 +29,22 @@ class CostNonPackageRequest extends FormRequest
     public function authorize()
     {
         return true;
+    }
+
+    /**
+    * Configure the validator instance.
+    *
+    * @param  \Illuminate\Validation\Validator  $validator
+    * @return void
+    */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator)
+        {
+            if ($validator->errors()->count() > 0)
+            {
+                LaraFlash::warning("Il y a une erreur avec votre formulaire, veuillez saisir correctement les champs indiqués")->keep();
+            }
+        });
     }
 }

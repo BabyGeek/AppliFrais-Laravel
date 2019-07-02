@@ -14,11 +14,16 @@ class CostNonPackage extends Model
     protected $table = 'cost_non_packages';
 
     protected $fillable = [
-        'justificatory',
-        'justificatory_number',
+        'justificate_path',
+        'justificate_name',
         'value',
         'label',
+        'date',
         'state',
+    ];
+
+    protected $dates = [
+        'date',
     ];
 
     public function sluggable()
@@ -32,6 +37,16 @@ class CostNonPackage extends Model
 
     public function user()
     {
-        return $this->belongsTp(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function getDateAttribute()
+    {
+        $this->date->format('d-m-Y');
+    }
+
+    public function setStartDateAttribute($value)
+    {
+        $this->attributes['date'] = Carbon::createFromFormat('Y-m-d', $request->input('date'));
     }
 }

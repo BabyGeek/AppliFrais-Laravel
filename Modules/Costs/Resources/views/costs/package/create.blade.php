@@ -5,9 +5,6 @@
     <a href="{{ route('module-costs.package.index', ['user_id' => $user->id]) }}" class="btn btn-sm btn-info shadow-sm">
             <i class="fas fa-backward text-white-50"></i> Retour </a>
 
-    <a href="{{ route('module-costs.package.create', ['user_id' => $user->id]) }}" class="btn btn-sm btn-success shadow-sm">
-        <i class="fas fa-plus-circle text-white-50"></i> Entrer un nouveau frais forfait </a>
-
         <a href="#" class="btn btn-sm shadow-sm btn-primary" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question-circle text-white-50"></i> Aide</a>
 </p>
 
