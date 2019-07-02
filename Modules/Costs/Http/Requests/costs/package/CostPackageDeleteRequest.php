@@ -41,7 +41,6 @@ class CostPackageDeleteRequest extends FormRequest
         {
             if ($validator->errors()->count() > 0)
             {
-                //LaraFlash::warning(")->keep();
                 LaraFlash::add("Problème avec votre validation de suppression", array('type' => 'warning'));
 
             }

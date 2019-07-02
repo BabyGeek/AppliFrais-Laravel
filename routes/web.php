@@ -12,20 +12,15 @@
 |
 */
 
-Route::get('/test', 'TestController@index')->name('test');
+//Route::get('/test', 'TestController@index')->name('test');
 
 Route::get('/', function () {
-    return view('home');
-})->name('home');
-
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
-
-Route::get('/user', function () {
-    return view('dashboard');
-})->name('dashboard');
+    return redirect()->route('login');
+});
 
 Auth::routes();
 
-Route::get('{user_id}/user/', 'HomeController@index')->name('user');
+Route::get('/user', 'HomeController@index')->name('user');
+Route::get('/user/{user_id}', function() {
+    return view('dashboard');
+})->name('dashboard');
