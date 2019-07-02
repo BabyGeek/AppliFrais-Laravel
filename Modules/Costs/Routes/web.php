@@ -18,7 +18,6 @@ Route::prefix('/{user_id}/costs')->name('module-costs.')->group(function() {
         Route::get('/', 'costs\package\CostPackageController@index')->name('package.index');
         Route::get('/create', 'costs\package\CostPackageController@create')->name('package.create');
         Route::post('/', 'costs\package\CostPackageController@store')->name('package.store');
-        Route::get('/{id}', 'costs\package\CostPackageController@show')->where(['id' => '[0-9]+'])->name('package.show');
         Route::get('/{id}/edit', 'costs\package\CostPackageController@edit')->where(['id' => '[0-9]+'])->name('package.edit');
         Route::delete('/{id}', 'costs\package\CostPackageController@destroy')->where(['id' => '[0-9]+'])->name('package.destroy');
     });

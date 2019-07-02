@@ -2,7 +2,7 @@
 
 @section('heading-buttons')
 <p>
-    <a href="{{ route('dashboard') }}" class="btn btn-sm btn-info shadow-sm">
+    <a href="{{ route('dashboard', ['user_id' => $user->id]) }}" class="btn btn-sm btn-info shadow-sm">
             <i class="fas fa-backward text-white-50"></i> Retour </a>
 
     <a href="{{ route('module-costs.package.create', ['user_id' => $user->id]) }}" class="btn btn-sm btn-success shadow-sm">
