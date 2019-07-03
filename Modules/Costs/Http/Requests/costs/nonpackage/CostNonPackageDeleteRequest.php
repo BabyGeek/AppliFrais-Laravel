@@ -3,6 +3,7 @@
 namespace Modules\Costs\Http\Requests\Costs\nonpackage;
 
 use Illuminate\Foundation\Http\FormRequest;
+use LaraFlash;
 
 class CostNonPackageDeleteRequest extends FormRequest
 {

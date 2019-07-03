@@ -42,7 +42,7 @@ class CostPackageRequest extends FormRequest
         {
             if ($validator->errors()->count() > 0)
             {
-                LaraFlash::warning("Il y a une erreur avec votre formulaire, veuillez saisir correctement les champs indiqués")->keep();
+                LaraFlash::warning("Il y a une erreur avec votre formulaire, veuillez saisir correctement les champs indiqués");
             }
         });
     }

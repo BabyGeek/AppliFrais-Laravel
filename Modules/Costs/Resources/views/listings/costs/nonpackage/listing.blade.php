@@ -5,8 +5,11 @@
             {{ $nonpackage->label }}
     </td>
     <td class=" ">{{ $nonpackage->value }}</td>
-    <td class=" ">{{ $nonpackage->justificate_name }}</td>
+    <td class=" ">{{ $nonpackage->justificates()->count() }}</td>
     <td class="">
+
+        <a href="{{ route('module-costs.nonpackage.show', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]) }}" class="btn btn-info btn-circle btn-sm" title="Informations">
+            <i class="fas fa-info"></i>
         </a>
         <a href="{{ route('module-costs.nonpackage.edit', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]) }}" class="btn btn-warning btn-circle btn-sm" title="Modifier">
             <i class="fas fa-pen"></i>

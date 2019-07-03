@@ -6,7 +6,7 @@
     </td>
     <td class=" ">{{ $package->value}}</td>
     <td class="">
-        </a>
+
         <a href="{{ route('module-costs.package.edit', ['user_id' => $package->user->id, 'id' => $package->id]) }}" class="btn btn-warning btn-circle btn-sm" title="Modifier">
             <i class="fas fa-pen"></i>
         </a>

@@ -31,11 +31,12 @@
             <th class="column-title text-center"> N° </th>
             <th class="column-title text-center"> Libellé </th>
             <th class="column-title text-center"> Montant (en €) </th>
-            <th class="column-title text-center"> Justificatif </th>
+            <th class="column-title text-center"> Nombre de justificatif </th>
+            <th class="column-title text-center"> Action </th>
         </tr>
         </thead>
         <tbody>
-            @each('costs::listings.costs.nonpackage.listing', $user->nonpackages, 'package', 'costs::listings.costs.nonpackage.emptyListing')
+            @each('costs::listings.costs.nonpackage.listing', $user->nonpackages, 'nonpackage', 'costs::listings.costs.nonpackage.emptyListing')
         </tbody>
         </table>
       </div>

@@ -3,6 +3,7 @@
 namespace Modules\Costs\Http\Requests\Costs\nonpackage;
 
 use Illuminate\Foundation\Http\FormRequest;
+use LaraFlash;
 
 class CostNonPackageRequest extends FormRequest
 {
@@ -17,7 +18,7 @@ class CostNonPackageRequest extends FormRequest
             'label' => 'required|string|max:30',
             'date' => 'required|date',
             'value' => 'required|numeric',
-            'justificate' => 'file|mimes:jpeg,pdf,png',
+            'justificate' => 'mimes:jpeg,pdf,png',
         ];
     }
 
@@ -43,7 +44,7 @@ class CostNonPackageRequest extends FormRequest
         {
             if ($validator->errors()->count() > 0)
             {
-                LaraFlash::warning("Il y a une erreur avec votre formulaire, veuillez saisir correctement les champs indiqués")->keep();
+                LaraFlash::warning("Il y a une erreur avec votre formulaire, veuillez saisir correctement les champs indiqués");
             }
         });
     }

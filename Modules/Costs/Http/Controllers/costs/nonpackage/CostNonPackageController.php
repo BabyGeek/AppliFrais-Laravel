@@ -7,10 +7,12 @@ use Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 use Modules\Costs\Models\CostNonPackage;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Modules\Costs\Http\Requests\Costs\nonpackage\CostNonPackageRequest;
 use Modules\Justificates\Models\Justificate;
+use Modules\Costs\Http\Requests\Costs\nonpackage\CostNonPackageDeleteRequest;
 
 class CostNonPackageController extends Controller
 {
@@ -66,18 +68,25 @@ class CostNonPackageController extends Controller
             $nonpackage->user()
             ->associate($user);
 
-            $nonpackage->save();
+            if ($request->file('justificate')->isValid() && $nonpackage->save())
+            {
+                try
+                {
+                    $justificate = new Justificate();
+                    $justificate->name = $request->justificate->getClientOriginalName();
+                    $justificate->path = $request->justificate->store('justificates/'.$user->id);
+                    $justificate->mime_type = $request->justificate->getClientMimeType();
 
-            if ($request->file('justificate')->isValid()) {
+                    $justificate->justificable()->associate(CostNonPackage::all()->last());
 
-                $justificate = new Justificate();
-                $justificate->name = $request->justificate->getClientOriginalName();
-                $justificate->path = $request->justificate->store('justificates/'.$user->id);
-                $justificate->mime_type = $request->justificate->getClientMimeType();
+                    $request->justificate->store('justificates/'.$user->id);
 
-                $nonpackage->justificable()->associate(CostNonPackage::all()->last());
+                    $justificate->save();
 
-                $request->justificate->store('justificates/'.$user->id);
+                }catch(ModelNotFoundException $exception)
+                {
+                    LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
+                }
             }
 
             if ($nonpackage)
@@ -131,37 +140,37 @@ class CostNonPackageController extends Controller
      * @param int $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($user_id, $id, CostNonPackageDeleteRequest $request)
     {
-        //
-    }
-
-
-    /**
-     * Crée une chaine aléatoire de longueur 20 par défaut
-     * selectionne la longueur maximum par apport aux nombre de caractères
-     * créé une chaine aléatoire parmis les caractéres de la longueur saisi en paramétre
-     * 20 par défaut
-     * @param int $longueur = 20 longueur en entier du mot aléatoire, 20 par defaut
-     * @return string $chaineAleatoire la chaine de caractére aléatoire
-     */
-    private function generateJustificateName($longueur = 20)
-    {
-        $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $longueurMax = strlen($caracteres);
-        $chaineAleatoire = '';
-        for ($i = 0; $i < $longueur; $i++)
+        try
         {
-            $chaineAleatoire .= $caracteres[rand(0, $longueurMax - 1)];
+            $nonpackage = CostnonPackage::findOrFail($id);
+
+            if($nonpackage->justificates())
+            {
+                foreach($nonpackage->justificates as $justificate)
+                {
+                    $justificate->delete();
+                    Storage::delete($justificate->path);
+                }
+            }
+
+
+            $nonpackage->user()->dissociate();
+
+            if($nonpackage->delete())
+            {
+            LaraFlash::add("Le frais hors forfait a bien été supprimée", array('type' => 'success'));
+            }else
+            {
+                LaraFlash::add("Le frais hors forfait n'a pas été supprimée", array('type' => 'danger'));
+
+            }
+        }catch(ModelNotFoundException $exception)
+        {
+            LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
+
         }
-
-        if(CostNonPackage::where('justificate_name', '=', $chaineAleatoire))
-        {
-            generateJustificateName();
-        }else
-        {
-            return $chaineAleatoire;
-        }
+        return redirect()->route('module-costs.nonpackage.index', ['user_id' => $user_id]);
     }
-
 }
