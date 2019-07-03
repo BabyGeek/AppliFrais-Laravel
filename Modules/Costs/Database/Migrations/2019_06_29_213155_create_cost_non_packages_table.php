@@ -17,13 +17,11 @@ class CreateCostNonPackagesTable extends Migration
         Schema::create('cost_non_packages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->nullable()->index();
-            $table->float('value')->nullable();
-            $table->string('label')->nullable();
+            $table->float('value');
+            $table->string('label');
             $table->string('slug')->nullable();
-            $table->string('justificate_path')->nullable();
-            $table->string('justificate_name')->nullable();
             $table->string('state')->default(CostState::defaultValue())->index();
-            $table->date('date')->nullable();
+            $table->date('date');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

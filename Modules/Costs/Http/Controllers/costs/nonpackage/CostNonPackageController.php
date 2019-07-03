@@ -10,6 +10,7 @@ use Illuminate\Routing\Controller;
 use Modules\Costs\Models\CostNonPackage;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Modules\Costs\Http\Requests\Costs\nonpackage\CostNonPackageRequest;
+use Modules\Justificates\Models\Justificate;
 
 class CostNonPackageController extends Controller
 {
@@ -65,14 +66,21 @@ class CostNonPackageController extends Controller
             $nonpackage->user()
             ->associate($user);
 
+            $nonpackage->save();
+
             if ($request->file('justificate')->isValid()) {
-                $nonpackage->justificate_name = $request->justificate->getClientOriginalName();
-                $nonpackage->justificate_path = $request->justificate->store('justificates/'.$user->id);
+
+                $justificate = new Justificate();
+                $justificate->name = $request->justificate->getClientOriginalName();
+                $justificate->path = $request->justificate->store('justificates/'.$user->id);
+                $justificate->mime_type = $request->justificate->getClientMimeType();
+
+                $nonpackage->justificable()->associate(CostNonPackage::all()->last());
 
                 $request->justificate->store('justificates/'.$user->id);
             }
 
-            if ($nonpackage->save())
+            if ($nonpackage)
             {
                 LaraFlash::add('Frais hors forfait entrée avec succès', array('type' => 'success'));
             }else

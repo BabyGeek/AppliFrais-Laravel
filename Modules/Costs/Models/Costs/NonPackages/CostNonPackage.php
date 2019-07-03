@@ -6,16 +6,15 @@ use Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\justificates\Traits\Justificable;
 
 class CostNonPackage extends Model
 {
-    use Sluggable, SoftDeletes;
+    use Sluggable, SoftDeletes, Justificable;
 
     protected $table = 'cost_non_packages';
 
     protected $fillable = [
-        'justificate_path',
-        'justificate_name',
         'value',
         'label',
         'date',
