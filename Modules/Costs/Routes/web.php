@@ -31,5 +31,10 @@ Route::prefix('/{user_id}/costs')->name('module-costs.')->group(function() {
         Route::get('/{id}/edit', 'costs\nonpackage\CostNonPackageController@edit')->where(['id' => '[0-9]+'])->name('nonpackage.edit');
         Route::put('/{id}', 'costs\nonpackage\CostNonPackageController@update')->where(['id' => '[0-9]+'])->name('nonpackage.update');
         Route::delete('/{id}', 'costs\nonpackage\CostNonPackageController@destroy')->where(['id' => '[0-9]+'])->name('nonpackage.destroy');
+
+        //Routes pour gérer les justificatifs
+        Route::prefix('/non-package/{nonpackage_id}/justificate')->group(function() {
+            Route::delete('/{id}', 'costs\nonpackage\justificate\CostNonPackageJustificateController@destroy')->where(['id' => '[0-9]+'])->name('nonpackage.justificate.destroy');
+    });
     });
 });

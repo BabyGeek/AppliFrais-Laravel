@@ -68,7 +68,9 @@ class CostNonPackageController extends Controller
             $nonpackage->user()
             ->associate($user);
 
-            if ($request->file('justificate')->isValid() && $nonpackage->save())
+            $nonpackage->save();
+
+            if ($request->file('justificate') !== null && $request->file('justificate')->isValid() && $nonpackage)
             {
                 try
                 {
@@ -78,10 +80,11 @@ class CostNonPackageController extends Controller
                     $justificate->mime_type = $request->justificate->getClientMimeType();
 
                     $justificate->justificable()->associate(CostNonPackage::all()->last());
-
-                    $request->justificate->store('justificates/'.$user->id);
-
                     $justificate->save();
+
+                    Storage::files('/public/justificates/'.$user->id);
+
+
 
                 }catch(ModelNotFoundException $exception)
                 {
@@ -109,9 +112,18 @@ class CostNonPackageController extends Controller
      * @param int $id
      * @return Response
      */
-    public function show($id)
+    public function show($user_id, $id)
     {
-        return view('costs::show');
+        try
+        {
+            $user = User::findOrFail($user_id);
+            $nonpackage = CostNonPackage::findOrFail($id);
+            return view('costs::costs.nonpackage.show', compact('user', 'nonpackage'));
+        } catch (ModelNotFoundException $exception)
+        {
+            LaraFlash::add('Utilisateur id : '.$user_id. ' non trouvé', array('type' => 'warning'));
+            return redirect()->route('dashboard', ['user_id' => $user->id]);
+        }
     }
 
     /**
@@ -119,9 +131,18 @@ class CostNonPackageController extends Controller
      * @param int $id
      * @return Response
      */
-    public function edit($id)
+    public function edit($user_id, $id)
     {
-        return view('costs::edit');
+        try
+        {
+            $user = User::findOrFail($user_id);
+            $nonpackage = CostNonPackage::findOrFail($id);
+            return view('costs::costs.nonpackage.edit', compact('user', 'nonpackage'));
+        } catch (ModelNotFoundException $exception)
+        {
+            LaraFlash::add('Frais hors forfait id : '.$id. ' non trouvé', array('type' => 'warning'));
+            return redirect()->route('dashboard', ['user_id' => $user->id]);
+        }
     }
 
     /**
@@ -130,9 +151,50 @@ class CostNonPackageController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update($user_id, $id, CostNonPackageRequest $request)
     {
-        //
+        try
+        {
+            $user = User::findOrFail($user_id);
+            $nonpackage = CostNonPackage::findOrFail($id);
+            $nonpackage->label = $request->input('label');
+            $nonpackage->date = $request->input('date');
+            $nonpackage->value = $request->input('value');
+            $nonpackage->save();
+
+            if ($request->file('justificate') !== null && $request->file('justificate')->isValid() && $nonpackage)
+            {
+                try
+                {
+                    $justificate = new Justificate();
+                    $justificate->name = $request->justificate->getClientOriginalName();
+                    $justificate->path = $request->justificate->store('justificates/'.$user->id);
+                    $justificate->mime_type = $request->justificate->getClientMimeType();
+
+                    $justificate->justificable()->associate(CostNonPackage::all()->last());
+                    $justificate->save();
+
+                    Storage::files('/public/justificates/'.$user->id);
+
+                }catch(ModelNotFoundException $exception)
+                {
+                    LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
+                }
+            }
+
+            if ($nonpackage)
+            {
+                LaraFlash::add('Frais hors forfait mit à jour avec succès', array('type' => 'success'));
+            }else
+            {
+                LaraFlash::add("Erreur lors de la mise à jour du frais hors forfait", array('type' => 'danger'));
+            }
+
+        }catch(ModelNotFoundException $exception)
+        {
+            LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
+        }
+        return redirect()->route('module-costs.nonpackage.index', ['user_id' => $user->id]);
     }
 
     /**
@@ -160,10 +222,10 @@ class CostNonPackageController extends Controller
 
             if($nonpackage->delete())
             {
-            LaraFlash::add("Le frais hors forfait a bien été supprimée", array('type' => 'success'));
+            LaraFlash::add("Le frais hors forfait a bien été supprimé", array('type' => 'success'));
             }else
             {
-                LaraFlash::add("Le frais hors forfait n'a pas été supprimée", array('type' => 'danger'));
+                LaraFlash::add("Le frais hors forfait n'a pas été supprimé", array('type' => 'danger'));
 
             }
         }catch(ModelNotFoundException $exception)

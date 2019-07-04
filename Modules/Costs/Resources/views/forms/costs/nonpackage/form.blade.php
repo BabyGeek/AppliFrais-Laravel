@@ -37,8 +37,8 @@
                         Montant (en €) :
                     @endcomponent
                 </div>
-                <div class="form-group custom-file">
-                    @component('components.field',[ 'type' => 'file', 'label' => 'Justificatif', 'name' => 'justificate[]', 'model' => (isset($nonpackage)) ? $nonpackage : null, 'attrs' => ['titlz' => 'Seulement les extensions .pdf, .jpg et .png sont accéptées', 'class' => 'custom-file-input', 'multiple' => null, ], 'attrsLabel' => ['class' => 'custom-file-label', ] ])
+                <div class="form-group">
+                    @component('components.field',[ 'type' => 'file', 'label' => 'Justificatif', 'name' => 'justificate', 'model' => (isset($nonpackage)) ? $nonpackage : null, 'attrs' => ['titlz' => 'Seulement les extensions .pdf, .jpg et .png sont accéptées', 'class' => 'custom-file-input', 'multiple' => null, ], 'attrsLabel' => ['class' => 'custom-file-label', ] ])
                         Justificatif :
                     @endcomponent
                 </div>

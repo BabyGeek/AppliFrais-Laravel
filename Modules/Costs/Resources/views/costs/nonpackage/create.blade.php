@@ -2,7 +2,7 @@
 
 @section('heading-buttons')
 <p>
-    <a href="{{ route('module-costs.package.index', ['user_id' => $user->id]) }}" class="btn btn-sm btn-info shadow-sm">
+    <a href="{{ route('module-costs.nonpackage.index', ['user_id' => $user->id]) }}" class="btn btn-sm btn-info shadow-sm">
             <i class="fas fa-backward text-white-50"></i> Retour </a>
 
         <a href="#" class="btn btn-sm shadow-sm btn-primary" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question-circle text-white-50"></i> Aide</a>

@@ -20,7 +20,7 @@
 </tr>
 @component('modals.delModal', ['action'=> route('module-costs.nonpackage.destroy', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]),'idModal'=> 'delModal-'.$nonpackage->id])
 <strong>
-    Etes-vous sur de vouloir "{{ $nonpackage->label }}" ?
+    Etes-vous sur de vouloir supprimer "{{ $nonpackage->label }}" ?
 </strong>
 <div>
     <input type="checkbox" id="delete" name="accepted" value='1'>

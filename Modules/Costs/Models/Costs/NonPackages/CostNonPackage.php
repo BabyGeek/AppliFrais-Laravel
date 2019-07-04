@@ -39,13 +39,4 @@ class CostNonPackage extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getDateAttribute()
-    {
-        $this->date->format('d-m-Y');
-    }
-
-    public function setStartDateAttribute($value)
-    {
-        $this->attributes['date'] = Carbon::createFromFormat('Y-m-d', $request->input('date'));
-    }
 }

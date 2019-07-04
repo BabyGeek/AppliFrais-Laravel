@@ -149,10 +149,10 @@ class CostPackageController extends Controller
 
             if($package)
             {
-            LaraFlash::add("Le frais forfait a bien été supprimée", array('type' => 'success'));
+            LaraFlash::add("Le frais forfait a bien été supprimé", array('type' => 'success'));
             }else
             {
-                LaraFlash::add("Le frais forfait n'a pas été supprimée", array('type' => 'danger'));
+                LaraFlash::add("Le frais forfait n'a pas été supprimé", array('type' => 'danger'));
 
             }
         }catch(ModelNotFoundException $exception)
