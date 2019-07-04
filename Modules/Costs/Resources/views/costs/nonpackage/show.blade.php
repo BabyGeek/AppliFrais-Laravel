@@ -78,9 +78,9 @@
                                 <div class="row">
                                     @if ($nonpackage->justificates->count() > 0)
                                     @each('costs::listings.costs.nonpackage.listingJustificates', $nonpackage->justificates, 'justificate')
-                                    <a class="btn btn-primary" href="{{ route('module-costs.nonpackage.edit', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]) }}"> Ajouter un justificatif</a>
+                                    <a class="btn btn-primary" href="{{ route('module-costs.nonpackage.justificate.create', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]) }}"> Ajouter un justificatif</a>
                                     @else
-                                    <a class="btn btn-primary" href="{{ route('module-costs.nonpackage.edit', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]) }}"> Ajouter un justificatif</a>
+                                    <a class="btn btn-primary" href="{{ route('module-costs.nonpackage.justificate.create', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]) }}"> Ajouter un justificatif</a>
                                     @endif
                                 </div>
                             </div>

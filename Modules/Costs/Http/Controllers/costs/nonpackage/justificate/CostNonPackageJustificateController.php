@@ -5,9 +5,13 @@ namespace Modules\Costs\Http\Controllers\costs\nonpackage\justificate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 use LaraFlash;
 use Modules\Justificates\Models\Justificate;
 use Modules\Costs\Http\Requests\Costs\nonpackage\justificate\CostNonPackageJustificateDeleteRequest;
+use Modules\Costs\Http\Requests\Costs\nonpackage\justificate\CostNonPackageJustificateRequest;
+use Modules\Costs\Models\CostNonPackage;
+use Models\User;
 
 class CostNonPackageJustificateController extends Controller
 {
@@ -24,9 +28,18 @@ class CostNonPackageJustificateController extends Controller
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create()
+    public function create($user_id, $nonpackage_id)
     {
-        return view('costs::create');
+        try
+        {
+            $nonpackage = CostNonPackage::findOrFail($nonpackage_id);
+            $user = $nonpackage->user;
+            return view('costs::costs.nonpackage.justificate.create', compact('user', 'nonpackage'));
+        } catch (ModelNotFoundException $exception)
+        {
+            LaraFlash::add('Forfait id : '.$nonpackage_id. ' non trouvé', array('type' => 'warning'));
+            return redirect()->route('costs.nonpackage.index', ['user_id' => $user_id, 'id' => $nonpackage_id]);
+        }
     }
 
     /**
@@ -34,9 +47,35 @@ class CostNonPackageJustificateController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store($user_id, $nonpackage_id, CostNonPackageJustificateRequest $request)
     {
-        //
+        try
+        {
+            $user = User::findOrFail($user_id);
+            $nonpackage=CostNonPackage::findOrFail($nonpackage_id);
+
+            $justificate = new Justificate();
+            $justificate->name = $request->justificate->getClientOriginalName();
+            $justificate->path = $request->justificate->store('justificates/'.$user->id);
+            $justificate->mime_type = $request->justificate->getClientMimeType();
+
+            $justificate->justificable()->associate($nonpackage);
+
+            Storage::files('/public/justificates/'.$user->id);
+
+            if ($justificate->save())
+            {
+                LaraFlash::add('Justificatif ajouté avec succès', array('type' => 'success'));
+            }else
+            {
+                LaraFlash::add("Erreur lors de l'ajout du justificatif", array('type' => 'danger'));
+            }
+
+        }catch(ModelNotFoundException $exception)
+        {
+            LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
+        }
+        return redirect()->route('module-costs.nonpackage.show', ['user_id' => $user->id, 'nonpackage_id' => $nonpackage->id]);
     }
 
     /**
