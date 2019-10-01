@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/user';
+    protected $redirectTo = '/register';
 
     /**
      * Create a new controller instance.
@@ -37,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -52,7 +52,12 @@ class RegisterController extends Controller
             'first_name' => ['required', 'string', 'max:50'],
             'last_name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'max:8'],
+            'address' => ['required', 'string', 'max:70'],
+            'CP' => ['required', 'string', 'max:5'],
+            'city' => ['required', 'string', 'max:30'],
+            'hiring_date' => ['required', 'date'],
+            'role' => ['required'],
         ]);
     }
 
@@ -70,6 +75,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'login' => $this->createLogin($data['first_name'], $data['last_name']),
+            'address' => $data['address'],
+            'CP' => $data['CP'],
+            'city' => $data['city'],
+            'hiring_date' => $data['hiring_date'],
+            'role' => $data['role']
         ]);
     }
 
@@ -81,12 +91,12 @@ class RegisterController extends Controller
      * @return string
      */
 
-     private function createLogin($first_name, $last_name)
-     {
-        $first_name = substr(strtolower($first_name), 0, 1);
-        $last_name = strtolower($last_name);
+    private function createLogin($first_name, $last_name)
+    {
+        $first_letter = substr(strtolower($last_name), 0, 1);
+        $first_name = strtolower($first_name);
 
-        return $first_name.$last_name;
-     }
+        return $first_letter.$first_name;
+    }
 
 }

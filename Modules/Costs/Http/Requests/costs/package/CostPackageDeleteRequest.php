@@ -3,7 +3,7 @@
 namespace Modules\Costs\Http\Requests\Costs\package;
 
 use Illuminate\Foundation\Http\FormRequest;
-use LaraFlash;
+use Coderello\Laraflash\Facades\Laraflash;
 
 class CostPackageDeleteRequest extends FormRequest
 {
@@ -41,8 +41,7 @@ class CostPackageDeleteRequest extends FormRequest
         {
             if ($validator->errors()->count() > 0)
             {
-                LaraFlash::add("Problème avec votre validation de suppression", array('type' => 'warning'));
-
+                laraflash()->message()->content("Problème avec votre validation de suppression")->title('Formulaire non valide')->type('warning');
             }
         });
     }

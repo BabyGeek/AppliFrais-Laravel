@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use LaraFlash;
+use Coderello\Laraflash\Facades\Laraflash;
 
 class TestController extends Controller
 {
@@ -24,9 +24,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        LaraFlash::warning("Problème avec votre validation de suppression");
-        LaraFlash::keep();
-
+         laraflash()->content("Problème avec votre validation de suppression")->title('Problème de suppression')->type('warning');
         return redirect()->route('dashboard');
     }
 }

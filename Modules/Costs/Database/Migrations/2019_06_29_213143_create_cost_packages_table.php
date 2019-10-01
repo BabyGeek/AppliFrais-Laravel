@@ -20,9 +20,9 @@ class CreateCostPackagesTable extends Migration
             $table->unsignedBigInteger('cost_id')->nullable()->index();
             $table->float('value')->nullable();
             $table->string('justificatory')->nullable();
-            $table->bigInteger('justificatory_number')->nullable();
+            $table->bigInteger('justificatory_number')->default(0);
             $table->string('state')->default(CostState::defaultValue())->index();
-            $table->date('date')->nullable();
+            $table->date('date');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

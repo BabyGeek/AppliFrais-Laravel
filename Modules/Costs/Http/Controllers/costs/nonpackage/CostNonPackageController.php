@@ -2,7 +2,6 @@
 
 namespace Modules\Costs\Http\Controllers\costs\nonpackage;
 
-use LaraFlash;
 use Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -13,6 +12,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Modules\Costs\Http\Requests\Costs\nonpackage\CostNonPackageRequest;
 use Modules\Justificates\Models\Justificate;
 use Modules\Costs\Http\Requests\Costs\nonpackage\CostNonPackageDeleteRequest;
+use Coderello\Laraflash\Facades\Laraflash;
 
 class CostNonPackageController extends Controller
 {
@@ -28,7 +28,7 @@ class CostNonPackageController extends Controller
             return view('costs::costs.nonpackage.index', compact('user'));
 
         } catch (ModelNotFoundException $exception) {
-            LaraFlash::add('Utilisateur id : '.$user_id. ' non trouvé', array('type' => 'warning'));
+            laraflash()->message()->content('Utilisateur id : '.$user_id. ' non trouvé')->title('Erreur de connexion à la base de donnée')->type('warning');
             return redirect()->route('dashboard', ['user_id' => $user->id]);
         }
     }
@@ -45,7 +45,7 @@ class CostNonPackageController extends Controller
             return view('costs::costs.nonpackage.create', compact('user'));
         } catch (ModelNotFoundException $exception)
         {
-            LaraFlash::add('Utilisateur id : '.$user_id. ' non trouvé', array('type' => 'warning'));
+            laraflash()->message()->content('Utilisateur id : '.$user_id. ' non trouvé')->title('Erreur de connexion à la base de donnée')->type('warning');
             return redirect()->route('dashboard', ['user_id' => $user->id]);
         }
     }
@@ -88,21 +88,21 @@ class CostNonPackageController extends Controller
 
                 }catch(ModelNotFoundException $exception)
                 {
-                    LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
+                    laraflash()->message()->content('Utilisateur id : '.$user_id. ' non trouvé')->title('Erreur de connexion à la base de donnée')->type('warning');
                 }
             }
 
             if ($nonpackage)
             {
-                LaraFlash::add('Frais hors forfait entrée avec succès', array('type' => 'success'));
+                laraflash()->message()->content('Frais hors forfait entrée avec succès')->title('Frais enregistré')->type('success');
             }else
             {
-                LaraFlash::add("Erreur lors de l'entrée du frais hors forfait", array('type' => 'danger'));
+                laraflash()->message()->content('Erreur lors de l\'entrée du frais hors forfait')->title('Frais non enregistré')->type('danger');
             }
 
         }catch(ModelNotFoundException $exception)
         {
-            LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
+            laraflash()->message()->content('Erreur de connexion à la base de donnée')->title('Problèmede connexion')->type('warning');
         }
         return redirect()->route('module-costs.nonpackage.index', ['user_id' => $user->id]);
     }
@@ -121,7 +121,7 @@ class CostNonPackageController extends Controller
             return view('costs::costs.nonpackage.show', compact('user', 'nonpackage'));
         } catch (ModelNotFoundException $exception)
         {
-            LaraFlash::add('Utilisateur id : '.$user_id. ' non trouvé', array('type' => 'warning'));
+            laraflash()->message()->content('Utilisateur id : '.$user_id. ' non trouvé')->title('Erreur de connexion à la base de donnée')->type('warning');
             return redirect()->route('dashboard', ['user_id' => $user->id]);
         }
     }
@@ -140,7 +140,7 @@ class CostNonPackageController extends Controller
             return view('costs::costs.nonpackage.edit', compact('user', 'nonpackage'));
         } catch (ModelNotFoundException $exception)
         {
-            LaraFlash::add('Frais hors forfait id : '.$id. ' non trouvé', array('type' => 'warning'));
+            laraflash()->message()->content('Utilisateur id : '.$user_id. ' non trouvé')->title('Erreur de connexion à la base de donnée')->type('warning');
             return redirect()->route('dashboard', ['user_id' => $user->id]);
         }
     }
@@ -178,21 +178,21 @@ class CostNonPackageController extends Controller
 
                 }catch(ModelNotFoundException $exception)
                 {
-                    LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
+                    laraflash()->content("Erreur de connexion à la base de donnée")->title('Forfait hors forfait introuvable')->type('warning');
                 }
             }
 
             if ($nonpackage)
             {
-                LaraFlash::add('Frais hors forfait mit à jour avec succès', array('type' => 'success'));
+                laraflash()->content('Frais hors forfait mit à jour avec succès')->title('Forfait hors forfait ajouté')->type('success');
             }else
             {
-                LaraFlash::add("Erreur lors de la mise à jour du frais hors forfait", array('type' => 'danger'));
+                laraflash()->content("Erreur lors de la mise à jour du frais hors forfait")->title('Forfait hors forfait non ajouté')->type('danger');
             }
 
         }catch(ModelNotFoundException $exception)
         {
-            LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
+            laraflash()->content("Erreur de connexion à la base de donnée")->title('Forfait hors forfait introuvable')->type('warning');
         }
         return redirect()->route('module-costs.nonpackage.index', ['user_id' => $user->id]);
     }
@@ -222,16 +222,14 @@ class CostNonPackageController extends Controller
 
             if($nonpackage->delete())
             {
-            LaraFlash::add("Le frais hors forfait a bien été supprimé", array('type' => 'success'));
+                laraflash()->content("Le frais hors forfait a bien été supprimé")->title('Forfait hors forfait supprimé')->type('success');
             }else
             {
-                LaraFlash::add("Le frais hors forfait n'a pas été supprimé", array('type' => 'danger'));
-
+                laraflash()->content("Le frais hors forfait n'a pas été supprimé")->title('Forfait hors forfait non supprimé')->type('danger');
             }
         }catch(ModelNotFoundException $exception)
         {
-            LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
-
+            laraflash()->content("Erreur de connexion à la base de donnée")->title('Forfait hors forfait introuvable')->type('warning');
         }
         return redirect()->route('module-costs.nonpackage.index', ['user_id' => $user_id]);
     }

@@ -1,4 +1,4 @@
-@extends('layouts.master', ['page_name' => $user->first_name.' '.$user->last_name. ' - Mes frais hors forfait'])
+@extends('layouts.master', ['page_name' => $user->first_name.' '.$user->last_name. " - Mes frais hors forfait du mois ", 'month' =>  '1' ])
 
 @section('heading-buttons')
 <p>

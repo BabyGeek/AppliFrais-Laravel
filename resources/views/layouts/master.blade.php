@@ -3,9 +3,13 @@
 
     @include('layouts.partials.head')
 
+
 <body class="nav-md">
     <div class="container body">
+    {!! laraflash()->render() !!}
+
         <div class="main_container">
+
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
@@ -36,7 +40,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3> {{ $page_name }} </h3>
+                            <h3> {{ $page_name }} @if (isset($month)) {{ Carbon\Carbon::now()->format('m/Y') }} @endif</h3>
                         </div>
                         <div class="title_right">
                             <div class="col-md-7 col-sm-7 col-xs-12 form-group pull-right">
@@ -135,11 +139,8 @@
     <script src="/vendor/flatpickr/flatpickr.js"></script>
     <script src="/vendor/flatpickr/fr.js"></script>
 
-    <!-- Alert -->
-    @include('layouts.partials.toast')
-    <!-- /Alert -->
-
     @yield('script')
+
 </body>
 
 </html>

@@ -8,24 +8,24 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Models\User;
 
-class AccountingController extends Controller
+class AccountingUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Response
      */
-    public function index($user_id)
+    public function index($user_id, $profile_id)
     {
-        try{
+        try
+        {
             $user = User::findOrFail($user_id);
-            $users = User::where('id', '<>', $user_id)->get();
-            return view('accounting::index', compact('user', 'users'));
+            $profile = User::findOrFail($profile_id);
+            return view('accounting::profile', compact('user', 'profile'));
         }catch(ModelNotFoundException $exception)
         {
             laraflash()->message()->content('Utilisateur introuvable')->title('Erreur')->type('danger');
-            return redirect()->route('login');
+            return redirect()->route('user');
         }
-
     }
 
     /**

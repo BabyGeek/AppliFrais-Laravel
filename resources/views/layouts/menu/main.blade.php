@@ -9,7 +9,7 @@
                     <li><a href="{{ route('module-costs.nonpackage.index',['user_id'=>Auth::user()->id]) }}">Frais hors forfait</a></li>
                 </ul>
             </li>
-            <li><a href="#"><i class="fa fa-desktop"></i> Historique </a></li>
+            <li><a href="{{ route('module-costs.history.index', ['user_id' => Auth::user()->id]) }}"><i class="fa fa-desktop"></i> Historique </a></li>
         </ul>
     </div>
     @if (Auth::user()->role == Enum\UserRole::ADMINISTRATOR)
@@ -17,15 +17,22 @@
         <h3>Menu Admin</h3>
         <ul class="nav side-menu">
             <li>
-                <a href="http://">
+                <a href="{{ route('register') }}">
                     <i class="fa fa-user"></i>
                     Ajouter un utilisateur
                 </a>
             </li>
+        </ul>
+    </div>
+    @endif
+    @if (Auth::user()->role == Enum\UserRole::ACCOUNTING or Auth::user()->role == Enum\UserRole::ADMINISTRATOR)
+    <div class="menu_section">
+        <h3>Menu Comptable</h3>
+        <ul class="nav side-menu">
             <li>
-                <a href="/test">
-                    <i class="fa fa-cogs"></i>
-                    Tests
+                <a href="{{ route('module-accounting.history.index', ['user_id' => Auth::user()->id]) }}">
+                    <i class="fa fa-user"></i>
+                    Historique des fiches
                 </a>
             </li>
         </ul>

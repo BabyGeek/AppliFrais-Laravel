@@ -56,19 +56,19 @@ class User extends Authenticatable
         $this->hiring_date->format('Y-m-d');
     }
 
-    public function setSiringDateAttribute($value)
-    {
-        $this->attributes['hiring_date'] = Carbon::createFromFormat('Y-m-d', $request->input('hiring_date'));
-    }
-
     public function packages()
     {
-        return $this->hasMany(CostPackage::class);
+        return $this->hasMany(CostPackage::class, 'user_id');
     }
 
     public function nonpackages()
     {
         return $this->hasMany(CostNonPackage::class);
+    }
+
+    public function car()
+    {
+        return $this->hasOne(Car::class);
     }
 
 }

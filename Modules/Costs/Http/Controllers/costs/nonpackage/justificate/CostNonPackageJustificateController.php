@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
-use LaraFlash;
 use Modules\Justificates\Models\Justificate;
 use Modules\Costs\Http\Requests\Costs\nonpackage\justificate\CostNonPackageJustificateDeleteRequest;
 use Modules\Costs\Http\Requests\Costs\nonpackage\justificate\CostNonPackageJustificateRequest;
 use Modules\Costs\Models\CostNonPackage;
 use Models\User;
+use Coderello\Laraflash\Facades\Laraflash;
 
 class CostNonPackageJustificateController extends Controller
 {
@@ -37,7 +37,7 @@ class CostNonPackageJustificateController extends Controller
             return view('costs::costs.nonpackage.justificate.create', compact('user', 'nonpackage'));
         } catch (ModelNotFoundException $exception)
         {
-            LaraFlash::add('Forfait id : '.$nonpackage_id. ' non trouvé', array('type' => 'warning'));
+            laraflash()->content("Erreur de connexion à la base de donnée")->title('Justificatif introuvable')->type('warning');
             return redirect()->route('costs.nonpackage.index', ['user_id' => $user_id, 'id' => $nonpackage_id]);
         }
     }
@@ -65,15 +65,16 @@ class CostNonPackageJustificateController extends Controller
 
             if ($justificate->save())
             {
-                LaraFlash::add('Justificatif ajouté avec succès', array('type' => 'success'));
+                laraflash()->content("Justificatif ajouté avec succès")->title('Justificatif ajouté')->type('success');
             }else
             {
-                LaraFlash::add("Erreur lors de l'ajout du justificatif", array('type' => 'danger'));
+                laraflash()->content("Erreur lors de l'ajout du justificatif")->title('Justificatif non ajouté')->type('success');
+
             }
 
         }catch(ModelNotFoundException $exception)
         {
-            LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
+            laraflash()->content("Erreur de connexion à la base de donnée")->title('Justificatif introuvable')->type('warning');
         }
         return redirect()->route('module-costs.nonpackage.show', ['user_id' => $user->id, 'nonpackage_id' => $nonpackage->id]);
     }
@@ -127,16 +128,14 @@ class CostNonPackageJustificateController extends Controller
 
             if($justificate->delete())
             {
-            LaraFlash::add("Le justificatif a bien été supprimé", array('type' => 'success'));
+                laraflash()->content("Le justificatif a bien été supprimé")->title('Justificatif supprimé')->type('success');
             }else
             {
-                LaraFlash::add("Le justificatif n'a pas été supprimé", array('type' => 'danger'));
-
+                laraflash()->content("Le justificatif n'a pas été supprimé")->title('Justificatif non supprimé')->type('danger');
             }
         }catch(ModelNotFoundException $exception)
         {
-            LaraFlash::add("Erreur de connexion à la base de donnée", array('type' => 'warning'));
-
+            laraflash()->content("Erreur de connexion à la base de donnée")->title('Justificatif introuvable')->type('warning');
         }
         return redirect()->route('module-costs.nonpackage.show', ['user_id' => $user_id, 'id' => $nonpackage_id]);
     }

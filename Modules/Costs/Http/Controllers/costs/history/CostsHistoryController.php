@@ -1,14 +1,14 @@
 <?php
 
-namespace Modules\Accounting\Http\Controllers;
+namespace Modules\Costs\Http\Controllers\costs\history;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Models\User;
 
-class AccountingController extends Controller
+class CostsHistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +18,10 @@ class AccountingController extends Controller
     {
         try{
             $user = User::findOrFail($user_id);
-            $users = User::where('id', '<>', $user_id)->get();
-            return view('accounting::index', compact('user', 'users'));
-        }catch(ModelNotFoundException $exception)
-        {
-            laraflash()->message()->content('Utilisateur introuvable')->title('Erreur')->type('danger');
-            return redirect()->route('login');
+            return view('costs::history.index', compact('user'));
+        }catch(ModelNotFoundException $exception){
+            redirect()->route('user');
         }
-
     }
 
     /**
@@ -34,7 +30,7 @@ class AccountingController extends Controller
      */
     public function create()
     {
-        return view('accounting::create');
+        return view('costs::create');
     }
 
     /**
@@ -54,7 +50,7 @@ class AccountingController extends Controller
      */
     public function show($id)
     {
-        return view('accounting::show');
+        return view('costs::show');
     }
 
     /**
@@ -64,7 +60,7 @@ class AccountingController extends Controller
      */
     public function edit($id)
     {
-        return view('accounting::edit');
+        return view('costs::edit');
     }
 
     /**

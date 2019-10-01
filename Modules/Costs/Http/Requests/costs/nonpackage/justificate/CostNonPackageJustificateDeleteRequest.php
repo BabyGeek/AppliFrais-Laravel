@@ -3,7 +3,8 @@
 namespace Modules\Costs\Http\Requests\Costs\nonpackage\justificate;
 
 use Illuminate\Foundation\Http\FormRequest;
-use LaraFlash;
+use Coderello\Laraflash\Facades\Laraflash;
+
 
 class CostNonPackageJustificateDeleteRequest extends FormRequest
 {
@@ -41,8 +42,7 @@ class CostNonPackageJustificateDeleteRequest extends FormRequest
         {
             if ($validator->errors()->count() > 0)
             {
-                LaraFlash::add("Problème avec votre validation de suppression", array('type' => 'warning'));
-
+                laraflash()->message()->content("Problème avec votre validation de suppression")->title('Formulaire non valide')->type('warning');
             }
         });
     }

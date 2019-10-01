@@ -24,7 +24,7 @@
                         <option value=""> {{ trans('-- Choisissez une option --') }} </option>
                             @foreach ($costs as $cost)
                                 <option value={{ $cost->id }}
-                                        @if ((isset($package)) && ($package->cost_id == $cost->id) )
+                                        @if ((isset($package)) && ($package->cost_id == $cost->id))
                                             selected
                                         @endif
                                     >
