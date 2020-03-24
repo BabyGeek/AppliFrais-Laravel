@@ -10,7 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix('user/{user_id}/accounting')->name('module-accounting.')->group(function() {
 
-Route::prefix('accounting')->group(function() {
-    Route::get('/', 'AccountingController@index');
+    //Routes pour permettre au comptable de gérer les visiteurs
+    Route::prefix('/history')->group(function() {
+        Route::get('/', 'AccountingController@index')->name('history.index')->middleware('auth');
+    });
+    
+    //Route pour accéder a l'utilisateur et le gérer
+    Route::prefix('/profile')->group(function() {
+        Route::get('/{profile_id}', 'AccountingUserController@index')->where(['profile_id' => '[0-9]+'])->name('user.detail');
+    });
 });

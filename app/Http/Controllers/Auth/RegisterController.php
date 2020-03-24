@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/register';
 
     /**
      * Create a new controller instance.
@@ -37,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -49,10 +49,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:50'],
+            'last_name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'max:8'],
+            'address' => ['required', 'string', 'max:70'],
+            'CP' => ['required', 'string', 'max:5'],
+            'city' => ['required', 'string', 'max:30'],
+            'hiring_date' => ['required', 'date'],
+            'role' => ['required'],
         ]);
     }
 
@@ -60,7 +65,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \Models\User
      */
     protected function create(array $data)
     {
@@ -69,6 +74,29 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'login' => $this->createLogin($data['first_name'], $data['last_name']),
+            'address' => $data['address'],
+            'CP' => $data['CP'],
+            'city' => $data['city'],
+            'hiring_date' => $data['hiring_date'],
+            'role' => $data['role']
         ]);
     }
+
+    /**
+     * Create a user login.
+     *
+     * @param  string $first_name
+     * @param  string $last_name
+     * @return string
+     */
+
+    private function createLogin($first_name, $last_name)
+    {
+        $first_letter = substr(strtolower($last_name), 0, 1);
+        $first_name = strtolower($first_name);
+
+        return $first_letter.$first_name;
+    }
+
 }

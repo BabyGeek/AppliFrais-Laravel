@@ -1,39 +1,25 @@
 <!DOCTYPE html>
-<html lang="fe">
+<html lang="fr">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @include('layouts.partials.head')
 
-    <title> AppliFrais </title>
-
-    <!-- Bootstrap -->
-    <link href="/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="/css/nprogress/nprogress.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="/css/custom.min.css" rel="stylesheet">
-</head>
 
 <body class="nav-md">
     <div class="container body">
+    {!! laraflash()->render() !!}
+
         <div class="main_container">
+
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-check-square-o"></i> <span> AppliFrais </span></a>
+                        <a href="{{ route('dashboard', ['user_id' => Auth::user()->id]) }}" class="site_title"><i class="fa fa-check-square-o"></i> <span> AppliFrais </span></a>
                     </div>
 
                     <div class="clearfix"></div>
 
                     <!-- menu profile quick info -->
-                    @include('layouts.partials.profileInfo')
+                    @include('layouts.menu.profileInfo')
                     <!-- /menu profile quick info -->
 
                     <br />
@@ -54,16 +40,13 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3> {{ $page_name }} </h3>
+                            <h3> {{ $page_name }} @if (isset($month)) {{ Carbon\Carbon::now()->format('m/Y') }} @endif</h3>
                         </div>
-
                         <div class="title_right">
-                            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">Go!</button>
-                                    </span>
+                            <div class="col-md-7 col-sm-7 col-xs-12 form-group pull-right">
+                                    <div class="input-group">
+                                        @yield('heading-buttons')
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +57,6 @@
                     <div class="row">
                         @yield('content')
                     </div>
-                </div>
             </div>
             <!-- /page content -->
 
@@ -84,17 +66,81 @@
         </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="/css/jquery/dist/jquery.min.js"></script>
+    <!-- JQuery -->
+    <script src="/vendor/jquery/dist/jquery.min.js" type="text/javascript"></script>
+
+    <!-- Google Analytics -->
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+
     <!-- Bootstrap -->
-    <script src="/css/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
     <!-- FastClick -->
-    <script src="/css/fastclick/lib/fastclick.js"></script>
+    <script src="/vendor/fastclick/lib/fastclick.js"></script>
+
     <!-- NProgress -->
-    <script src="/css/nprogress/nprogress.js"></script>
+    <script src="/vendor/nprogress/nprogress.js"></script>
+
+    <!-- Chart JS -->
+    <script src="/vendor/Chart.js/dist/Chart.min.js" type="text/javascript"></script>
+
+    <!-- Gauge -->
+    <script src="/vendor/gauge.js/dist/gauge.min.js" type="text/javascript"></script>
+
+    <!-- ProgressBar -->
+    <script src="/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js" type="text/javascript"></script>
+
+    <!-- iCheck -->
+    <script src="/vendor/iCheck/icheck.min.js" type="text/javascript"></script>
+
+    <!-- Skycons -->
+    <script src="/vendor/skycons/skycons.js" type="text/javascript"></script>
+
+    <!-- Flot -->
+    <script src="/vendor/Flot/jquery.flot.js" type="text/javascript"></script>
+
+    <!-- FlotPie -->
+    <script src="/vendor/Flot/jquery.flot.pie.js" type="text/javascript"></script>
+
+    <!-- FlotTime -->
+    <script src="/vendor/Flot/jquery.flot.time.js" type="text/javascript"></script>
+
+    <!-- FlotStack -->
+    <script src="/vendor/Flot/jquery.flot.stack.js" type="text/javascript"></script>
+
+    <!-- FlotResize -->
+    <script src="/vendor/Flot/jquery.flot.resize.js" type="text/javascript"></script>
+
+    <!-- FlotOrderBars -->
+    <script src="/vendor/flot.orderbars/js/jquery.flot.orderBars.js" type="text/javascript"></script>
+
+    <!-- FlotSpline -->
+    <script src="/vendor/flot-spline/js/jquery.flot.spline.min.js" type="text/javascript"></script>
+
+    <!-- CurvedLines -->
+    <script src="/vendor/flot.curvedlines/curvedLines.js" type="text/javascript"></script>
+
+    <!-- Date -->
+    <script src="/vendor/DateJS/build/date.js" type="text/javascript"></script>
+
+    <!-- Moment -->
+    <script src="/vendor/moment/min/moment.min.js" type="text/javascript"></script>
+
+    <!-- DateRangePicker -->
+    <script src="/vendor/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
+
+    <!-- AwesomeFontIcons -->
+    <script src="https://kit.fontawesome.com/4b992502df.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="/js/custom.min.js"></script>
+
+    <!-- Flatpickr -->
+    <script src="/vendor/flatpickr/flatpickr.js"></script>
+    <script src="/vendor/flatpickr/fr.js"></script>
+
+    @yield('script')
+
 </body>
 
 </html>

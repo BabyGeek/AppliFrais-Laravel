@@ -2,9 +2,11 @@
 
 namespace Modules\Accounting\Http\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Models\User;
 
 class AccountingController extends Controller
 {
@@ -12,9 +14,18 @@ class AccountingController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index($user_id)
     {
-        return view('accounting::index');
+        try{
+            $user = User::findOrFail($user_id);
+            $users = User::where('id', '<>', $user_id)->get();
+            return view('accounting::index', compact('user', 'users'));
+        }catch(ModelNotFoundException $exception)
+        {
+            laraflash()->message()->content('Utilisateur introuvable')->title('Erreur')->type('danger');
+            return redirect()->route('login');
+        }
+
     }
 
     /**

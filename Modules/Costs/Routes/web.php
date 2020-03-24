@@ -11,27 +11,36 @@
 |
 */
 
-Route::prefix('/costs')->name('module-costs.')->group(function() {
+Route::prefix('user/{user_id}/costs')->name('module-costs.')->group(function() {
 
     //Routes pour gérer les frais forfaits
-    Route::prefix('/{user_id}/package')->group(function() {
-        Route::get('/', 'costs\package\CostPackageController@index')->name('package.index');
-        Route::get('/create', 'costs\package\CostPackageController@create')->name('package.create');
-        Route::post('/', 'costs\package\CostPackageController@store')->name('package.store');
-        Route::get('/{id}', 'costs\package\CostPackageController@show')->where(['id' => '[0-9]+'])->name('package.show');
-        Route::get('/{id}/edit', 'costs\package\CostPackageController@edit')->where(['id' => '[0-9]+'])->name('package.edit');
-        Route::put('/{id}', 'costs\package\CostPackageController@update')->where(['id' => '[0-9]+'])->name('package.update');
-        Route::delete('/{id}', 'costs\package\CostPackageController@destroy')->where(['id' => '[0-9]+'])->name('package.destroy');
+    Route::prefix('/package')->group(function() {
+        Route::get('/', 'costs\package\CostPackageController@index')->name('package.index')->middleware('auth');
+        Route::get('/create', 'costs\package\CostPackageController@create')->name('package.create')->middleware('auth');
+        Route::post('/', 'costs\package\CostPackageController@store')->name('package.store')->middleware('auth');
+        Route::get('/{id}/edit', 'costs\package\CostPackageController@edit')->where(['id' => '[0-9]+'])->name('package.edit')->middleware('auth');
+        Route::delete('/{id}', 'costs\package\CostPackageController@destroy')->where(['id' => '[0-9]+'])->name('package.destroy')->middleware('auth');
     });
 
     //Routes pour gérer les frais hors forfaits
-    Route::prefix('/{user_id}/non-package')->group(function() {
-        Route::get('/', 'costs\nonpackage\CostNonPackageController@index')->name('nonpackage.index');
-        Route::get('/create', 'costs\nonpackage\CostNonPackageController@create')->name('nonpackage.create');
-        Route::post('/', 'costs\nonpackage\CostNonPackageController@store')->name('nonpackage.store');
-        Route::get('/{id}', 'costs\nonpackage\CostNonPackageController@show')->where(['id' => '[0-9]+'])->name('nonpackage.show');
-        Route::get('/{id}/edit', 'costs\nonpackage\CostNonPackageController@edit')->where(['id' => '[0-9]+'])->name('nonpackage.edit');
-        Route::put('/{id}', 'costs\nonpackage\CostNonPackageController@update')->where(['id' => '[0-9]+'])->name('nonpackage.update');
-        Route::delete('/{id}', 'costs\nonpackage\CostNonPackageController@destroy')->where(['id' => '[0-9]+'])->name('nonpackage.destroy');
+    Route::prefix('/non-package')->group(function() {
+        Route::get('/', 'costs\nonpackage\CostNonPackageController@index')->name('nonpackage.index')->middleware('auth');
+        Route::get('/create', 'costs\nonpackage\CostNonPackageController@create')->name('nonpackage.create')->middleware('auth');
+        Route::post('/', 'costs\nonpackage\CostNonPackageController@store')->name('nonpackage.store')->middleware('auth');
+        Route::get('/{id}', 'costs\nonpackage\CostNonPackageController@show')->where(['id' => '[0-9]+'])->name('nonpackage.show')->middleware('auth');
+        Route::get('/{id}/edit', 'costs\nonpackage\CostNonPackageController@edit')->where(['id' => '[0-9]+'])->name('nonpackage.edit')->middleware('auth');
+        Route::put('/{id}', 'costs\nonpackage\CostNonPackageController@update')->where(['id' => '[0-9]+'])->name('nonpackage.update')->middleware('auth');
+        Route::delete('/{id}', 'costs\nonpackage\CostNonPackageController@destroy')->where(['id' => '[0-9]+'])->name('nonpackage.destroy')->middleware('auth');
+
+        //Routes pour gérer les justificatifs
+        Route::prefix('/non-package/{nonpackage_id}/justificate')->group(function() {
+            Route::get('/create', 'costs\nonpackage\justificate\CostNonPackageJustificateController@create')->name('nonpackage.justificate.create')->middleware('auth');
+            Route::post('/', 'costs\nonpackage\justificate\CostNonPackageJustificateController@store')->name('nonpackage.justificate.store')->middleware('auth');
+            Route::delete('/{id}', 'costs\nonpackage\justificate\CostNonPackageJustificateController@destroy')->where(['id' => '[0-9]+'])->name('nonpackage.justificate.destroy')->middleware('auth');
+        });
+    });
+
+    Route::prefix('/history')->group(function() {
+        Route::get('/', 'costs\history\CostsHistoryController@index')->name('history.index')->middleware('auth');
     });
 });

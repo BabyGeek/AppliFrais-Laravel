@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,18 +12,15 @@
 |
 */
 
+//Route::get('/test', 'TestController@index')->name('test');
+
 Route::get('/', function () {
-    return view('home');
-})->name('home');
-
-Route::get('/login', function () {
-    return view('login');
+    return redirect()->route('login');
 });
-
-Route::get('/user', function () {
-    return view('dashboard');
-})->name('dashboard');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/user', 'HomeController@index')->name('user');
+Route::get('/user/{user_id}', function() {
+    return view('dashboard');
+})->name('dashboard');
