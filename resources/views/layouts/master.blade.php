@@ -7,33 +7,32 @@
 <body class="nav-md">
     <div class="container body">
     {!! laraflash()->render() !!}
-
         <div class="main_container">
+            @if(Auth::user())
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="{{ route('dashboard', ['user_id' => Auth::user()->id]) }}" class="site_title"><i class="fa fa-check-square-o"></i> <span> AppliFrais </span></a>
+                        </div>
 
-            <div class="col-md-3 left_col">
-                <div class="left_col scroll-view">
-                    <div class="navbar nav_title" style="border: 0;">
-                        <a href="{{ route('dashboard', ['user_id' => Auth::user()->id]) }}" class="site_title"><i class="fa fa-check-square-o"></i> <span> AppliFrais </span></a>
+                        <div class="clearfix"></div>
+
+                        <!-- menu profile quick info -->
+                        @include('layouts.menu.profileInfo')
+                        <!-- /menu profile quick info -->
+
+                        <br />
+
+                        <!-- sidebar menu -->
+                        @include('layouts.menu.main')
+                        <!-- /sidebar menu -->
                     </div>
-
-                    <div class="clearfix"></div>
-
-                    <!-- menu profile quick info -->
-                    @include('layouts.menu.profileInfo')
-                    <!-- /menu profile quick info -->
-
-                    <br />
-
-                    <!-- sidebar menu -->
-                    @include('layouts.menu.main')
-                    <!-- /sidebar menu -->
-
                 </div>
-            </div>
 
-            <!-- top navigation -->
-            @include('layouts.partials.topbar')
-            <!-- /top navigation -->
+                <!-- top navigation -->
+                @include('layouts.partials.topbar')
+                <!-- /top navigation -->
+            @endif
 
             <!-- page content -->
             <div class="right_col" role="main">
@@ -60,6 +59,7 @@
             </div>
             <!-- /page content -->
 
+
             <!-- footer content -->
             @include('layouts.partials.footer')
             <!-- /footer content -->
@@ -67,67 +67,55 @@
     </div>
 
     <!-- JQuery -->
-    <script src="/vendor/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
     <!-- Google Analytics -->
     <script async="" src="https://www.google-analytics.com/analytics.js"></script>
 
     <!-- Bootstrap -->
-    <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- FastClick -->
-    <script src="/vendor/fastclick/lib/fastclick.js"></script>
+    <script src="/js/fastclick/lib/fastclick.js"></script>
 
     <!-- NProgress -->
-    <script src="/vendor/nprogress/nprogress.js"></script>
+    <script src="/js/nprogress/nprogress.js"></script>
 
     <!-- Chart JS -->
-    <script src="/vendor/Chart.js/dist/Chart.min.js" type="text/javascript"></script>
+    <script src="/js/chart.js/dist/Chart.min.js" type="text/javascript"></script>
 
     <!-- Gauge -->
-    <script src="/vendor/gauge.js/dist/gauge.min.js" type="text/javascript"></script>
-
-    <!-- ProgressBar -->
-    <script src="/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js" type="text/javascript"></script>
+    <script src="/js/gauge.js/dist/gauge.min.js" type="text/javascript"></script>
 
     <!-- iCheck -->
-    <script src="/vendor/iCheck/icheck.min.js" type="text/javascript"></script>
+    <script src="/js/iCheck/icheck.min.js" type="text/javascript"></script>
 
     <!-- Skycons -->
-    <script src="/vendor/skycons/skycons.js" type="text/javascript"></script>
+    <script src="/js/skycons/skycons.js" type="text/javascript"></script>
 
     <!-- Flot -->
-    <script src="/vendor/Flot/jquery.flot.js" type="text/javascript"></script>
+    <script src="/js/flot/source/jquery.flot.js" type="text/javascript"></script>
 
     <!-- FlotPie -->
-    <script src="/vendor/Flot/jquery.flot.pie.js" type="text/javascript"></script>
+    <script src="/js/flot/source/jquery.flot.pie.js" type="text/javascript"></script>
 
     <!-- FlotTime -->
-    <script src="/vendor/Flot/jquery.flot.time.js" type="text/javascript"></script>
+    <script src="/js/flot/source/jquery.flot.time.js" type="text/javascript"></script>
 
     <!-- FlotStack -->
-    <script src="/vendor/Flot/jquery.flot.stack.js" type="text/javascript"></script>
+    <script src="/js/flot/source/jquery.flot.stack.js" type="text/javascript"></script>
 
     <!-- FlotResize -->
-    <script src="/vendor/Flot/jquery.flot.resize.js" type="text/javascript"></script>
-
-    <!-- FlotOrderBars -->
-    <script src="/vendor/flot.orderbars/js/jquery.flot.orderBars.js" type="text/javascript"></script>
-
-    <!-- FlotSpline -->
-    <script src="/vendor/flot-spline/js/jquery.flot.spline.min.js" type="text/javascript"></script>
-
-    <!-- CurvedLines -->
-    <script src="/vendor/flot.curvedlines/curvedLines.js" type="text/javascript"></script>
+    <script src="/js/flot/source/jquery.flot.resize.js" type="text/javascript"></script>
 
     <!-- Date -->
-    <script src="/vendor/DateJS/build/date.js" type="text/javascript"></script>
+    <script src="/js/Datejs/build/date.js" type="text/javascript"></script>
 
     <!-- Moment -->
-    <script src="/vendor/moment/min/moment.min.js" type="text/javascript"></script>
+    <script src="/js/moment/min/moment.min.js" type="text/javascript"></script>
 
     <!-- DateRangePicker -->
-    <script src="/vendor/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
+    <script src="/js/daterangepicker/daterangepicker.js" type="text/javascript"></script>
 
     <!-- AwesomeFontIcons -->
     <script src="https://kit.fontawesome.com/4b992502df.js"></script>
@@ -136,8 +124,8 @@
     <script src="/js/custom.min.js"></script>
 
     <!-- Flatpickr -->
-    <script src="/vendor/flatpickr/flatpickr.js"></script>
-    <script src="/vendor/flatpickr/fr.js"></script>
+    <script src="/js/flatpickr/dist/flatpickr.js"></script>
+    <script src="/js/flatpickr/dist/l10n/fr.js"></script>
 
     @yield('script')
 

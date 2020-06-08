@@ -10,29 +10,26 @@
         <title> AppliFrais </title>
 
         <!-- Bootstrap -->
-        <link href="/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Font Awesome -->
-        <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
+        <script src="https://use.fontawesome.com/0eb6a14139.js"></script>
+        
         <!-- NProgress -->
-        <link href="/vendor/nprogress/nprogress.css" rel="stylesheet">
+        <link href="/css/nprogress/nprogress.css" rel="stylesheet">
 
         <!-- Custom Theme Style -->
         <link href="/css/custom.min.css" rel="stylesheet">
 
         <!-- Green CSS -->
-        <link href="/vendor/iCheck/skins/flat/green.css" rel="stylesheet">
-
-        <!-- ProgressBar CSS -->
-        <link href="/vendor/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+        <link href="/css/iCheck/skins/flat/green.css" rel="stylesheet">
 
         <!-- DateRangePicker CSS -->
-        <link href="/vendor/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+        <link href="/css/daterangepicker/daterangepicker.css" rel="stylesheet">
 
         <!-- flatpickr CSS et theme Airbnb-->
-        <link href="/vendor/flatpickr/flatpickr.css" rel="stylesheet">
-        <link href="/vendor/flatpickr/airbnb.css" rel="stylesheet">
+        <link href="/css/flatpickr/dist/flatpickr.css" rel="stylesheet">
+        <link href="/css/flatpickr/dist/themes/airbnb.css" rel="stylesheet">
 
         <style type="text/css">
             #pearlItButtonImg {

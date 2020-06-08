@@ -36,7 +36,9 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Appstract\\BladeDirectives\\": "src"
+                    "Appstract\\BladeDirectives\\": "src",
+                    "node_modules\\": "node_module",
+                    "vendor\\" : "vendor/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
