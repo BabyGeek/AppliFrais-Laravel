@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Models\User;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\CheckAuth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -37,7 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware(CheckAuth::class);
     }
 
     /**
