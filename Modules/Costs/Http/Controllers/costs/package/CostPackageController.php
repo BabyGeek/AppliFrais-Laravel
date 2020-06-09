@@ -122,7 +122,7 @@ class CostPackageController extends Controller
             return view('costs::costs.package.edit', compact('user', 'package', 'states', 'costs'));
         }catch(ModelNotFoundException $exception){
             laraflash()->message()->content("Le frais forfait demandé est introuvable")->title('Frais introuvable')->type('warning');
-            return redirect()->route('module-costs.package.index');
+            return redirect()->route('module-costs.package.index', ['user_id' => $user_id]);
         }
     }
 

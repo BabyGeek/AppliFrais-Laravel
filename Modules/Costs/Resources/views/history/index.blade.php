@@ -23,7 +23,8 @@
 @endsection
 
 @section('content')
-<div class="card text-center">
+<div class="col">
+    <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title"> Affichage des frais forfaitaire pour le  {{ Enum\UserRole::create($user->role).' '.$user->first_name.' '.$user->last_name }}</h5>
           <div class="table-responsive">
@@ -39,13 +40,13 @@
             </tr>
             </thead>
             <tbody>
-                @each('costs::listings.history.listing', $user->packages, 'package', 'costs::listings.history.emptyListing')
-                @each('costs::listings.history.listing', $user->nonpackages, 'package')
+                @each('costs::listings.history.packagelisting', $user->packages, 'package', 'costs::listings.history.emptyListing')
+                @each('costs::listings.history.nonpackagelisting', $user->nonpackages, 'nonpackage')
             </tbody>
             </table>
           </div>
         </div>
     </div>
-
+</div>
 @endsection
 
