@@ -19,7 +19,8 @@
 @endsection
 
 @section('content')
-<div class="col-md-12">
+
+<div class="col">
     <div class="x_panel">
         <div class="x_title">
             <h2> Détails - {{ $nonpackage->label }}</h2>

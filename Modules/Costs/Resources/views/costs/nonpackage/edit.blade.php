@@ -20,7 +20,7 @@
 @endsection
 
 @section('content')
-<div class="row">
+<div class="col">
     @include('costs::forms.costs.nonpackage.form', ['legend' => 'Formulaire pour modifier un frais hors forfait', 'action' =>  route('module-costs.nonpackage.update', ['user_id'=> $user->id, 'id' => $nonpackage->id]), 'method'=>'PUT', 'txtbtn' => 'Modifier'])
 </div>
 @endsection

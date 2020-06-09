@@ -7,15 +7,15 @@
         </td>
         <td class=" ">{{ $nonpackage->value }}</td>
         <td class=" ">{{ $nonpackage->justificates()->count() }}</td>
-        <td class="">
+        <td class="row">
 
-            <a href="{{ route('module-costs.nonpackage.show', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]) }}" class="btn btn-info btn-circle btn-sm" title="Informations">
+            <a href="{{ route('module-costs.nonpackage.show', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]) }}" class="btn btn-info btn-circle btn-sm col-3" title="Informations">
                 <i class="fa fa-info"></i>
             </a>
-            <a href="{{ route('module-costs.nonpackage.edit', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]) }}" class="btn btn-warning btn-circle btn-sm" title="Modifier">
-                <i class="fa fa-pen"></i>
+            <a href="{{ route('module-costs.nonpackage.edit', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]) }}" class="btn btn-warning btn-circle btn-sm col-3" title="Modifier">
+                <i class="fa fa-pencil"></i>
             </a>
-            <a href="#" class="btn btn-danger btn-circle btn-sm" title="Supprimer" data-toggle="modal" data-target="#delModal-{{ $nonpackage->id }}">
+            <a href="#" class="btn btn-danger btn-circle btn-sm col-3" title="Supprimer" data-toggle="modal" data-target="#delModal-{{ $nonpackage->id }}">
                 <i class="fa fa-trash"></i></a>
         </td>
     </tr>

@@ -6,12 +6,11 @@
                 {{ Modules\Costs\Enum\CostType::create($package->cost->type) }}
         </td>
         <td class=" ">{{ $package->value }}</td>
-        <td class="">
-
-            <a href="{{ route('module-costs.package.edit', ['user_id' => $package->user->id, 'id' => $package->id]) }}" class="btn btn-warning btn-circle btn-sm" title="Modifier">
-                <i class="fa fa-pen"></i>
+        <td class="row">
+            <a href="{{ route('module-costs.package.edit', ['user_id' => $package->user->id, 'id' => $package->id]) }}" class="btn btn-warning btn-circle btn-sm col-3" title="Modifier">
+                <i class="fa fa-pencil"></i>
             </a>
-            <a href="#" class="btn btn-danger btn-circle btn-sm" title="Supprimer" data-toggle="modal" data-target="#delModal-{{ $package->id }}">
+            <a href="#" class="btn btn-danger btn-circle btn-sm col-3" title="Supprimer" data-toggle="modal" data-target="#delModal-{{ $package->id }}">
                 <i class="fa fa-trash"></i></a>
         </td>
     </tr>

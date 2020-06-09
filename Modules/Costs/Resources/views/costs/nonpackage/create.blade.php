@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-<div class="row">
+<div class="col">
     @include('costs::forms.costs.nonpackage.form', ['legend' => 'Formulaire pour ajouter un frais hors forfait', 'action' =>  route('module-costs.nonpackage.store', ['user_id'=> $user->id]), 'method'=>'POST'])
 </div>
 @endsection

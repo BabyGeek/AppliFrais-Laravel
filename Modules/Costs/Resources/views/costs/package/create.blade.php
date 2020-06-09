@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-<div class="row">
+<div class="col">
     @include('costs::forms.costs.package.form', ['legend' => 'Formulaire pour ajouter un frais forfait', 'action' =>  route('module-costs.package.store', ['user_id'=> $user->id]), 'method'=>'POST','txtbtn' => 'Ajouter' ])
 </div>
 @endsection

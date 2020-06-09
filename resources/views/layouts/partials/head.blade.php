@@ -28,6 +28,9 @@
         <!-- Custom Theme Style -->
         <link href="/css/custom.min.css" rel="stylesheet">
 
+        <!-- Custom App CSS -->
+        <link href="/css/style.css" rel="stylesheet">
+
         <!-- flatpickr CSS et theme Airbnb-->
         <link href="/css/flatpickr/dist/flatpickr.css" rel="stylesheet">
         <link href="/css/flatpickr/dist/themes/airbnb.css" rel="stylesheet">
