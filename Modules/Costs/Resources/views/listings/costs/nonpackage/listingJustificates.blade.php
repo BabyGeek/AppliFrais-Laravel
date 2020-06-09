@@ -3,10 +3,10 @@
         {{ $justificate->name }}
     </a>
     <a href="/storage/{{ $justificate->path }}" class="btn btn-info btn-circle btn-sm" target="_blank" title="Ouvrir">
-        <i class="fas fa-info"></i>
+        <i class="fa fa-info"></i>
     </a>
     <a href="#" class="btn btn-danger btn-circle btn-sm" title="Supprimer" data-toggle="modal" data-target="#delModal-{{ $justificate->id }}">
-        <i class="fas fa-trash"></i>
+        <i class="fa fa-trash"></i>
     </a>
 </p>
 

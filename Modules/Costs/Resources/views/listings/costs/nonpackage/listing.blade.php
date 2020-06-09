@@ -10,13 +10,13 @@
         <td class="">
 
             <a href="{{ route('module-costs.nonpackage.show', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]) }}" class="btn btn-info btn-circle btn-sm" title="Informations">
-                <i class="fas fa-info"></i>
+                <i class="fa fa-info"></i>
             </a>
             <a href="{{ route('module-costs.nonpackage.edit', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]) }}" class="btn btn-warning btn-circle btn-sm" title="Modifier">
-                <i class="fas fa-pen"></i>
+                <i class="fa fa-pen"></i>
             </a>
             <a href="#" class="btn btn-danger btn-circle btn-sm" title="Supprimer" data-toggle="modal" data-target="#delModal-{{ $nonpackage->id }}">
-                <i class="fas fa-trash"></i></a>
+                <i class="fa fa-trash"></i></a>
         </td>
     </tr>
     @component('modals.delModal', ['action'=> route('module-costs.nonpackage.destroy', ['user_id' => $nonpackage->user->id, 'id' => $nonpackage->id]),'idModal'=> 'delModal-'.$nonpackage->id])
