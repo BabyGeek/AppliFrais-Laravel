@@ -45,16 +45,16 @@ class BaseEnumTest extends TestCase
     {
         $enum = Sample123::create();
 
-        $this->assertEquals(Sample123::__default, $enum->value());
+        $this->assertEquals(Sample123::__DEFAULT, $enum->value());
 
         $def = new SampleOneTwoThree();
 
-        $this->assertEquals(SampleOneTwoThree::__default, $def->value());
+        $this->assertEquals(SampleOneTwoThree::__DEFAULT, $def->value());
         $this->assertEquals('one', $def->value());
 
         $defn = new Sample123();
 
-        $this->assertEquals(Sample123::__default, $defn->value());
+        $this->assertEquals(Sample123::__DEFAULT, $defn->value());
         $this->assertEquals(1, $defn->value());
     }
 
@@ -139,8 +139,8 @@ class BaseEnumTest extends TestCase
      */
     public function values_are_of_proper_type_independently_from_how_it_was_constructed()
     {
-        $this->assertInternalType('integer', Sample123::create("2")->value());
-        $this->assertInternalType('integer', Sample123::create(2)->value());
+        $this->assertIsInt(Sample123::create("2")->value());
+        $this->assertIsInt(Sample123::create(2)->value());
     }
 
     /**

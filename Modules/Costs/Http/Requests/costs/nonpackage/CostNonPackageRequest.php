@@ -3,7 +3,7 @@
 namespace Modules\Costs\Http\Requests\Costs\nonpackage;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Coderello\Laraflash\Facades\Laraflash;
+use \Laraflash\Facades\Laraflash;
 
 class CostNonPackageRequest extends FormRequest
 {
@@ -44,7 +44,7 @@ class CostNonPackageRequest extends FormRequest
         {
             if ($validator->errors()->count() > 0)
             {
-                laraflash()->message()->content('Il y a une erreur avec votre formulaire, veuillez saisir correctement les champs indiqués')->title('Formulaire non valide')->type('warning');
+                //laraflash()->message()->content('Il y a une erreur avec votre formulaire, veuillez saisir correctement les champs indiqués')->title('Formulaire non valide')->type('warning');
             }
         });
     }

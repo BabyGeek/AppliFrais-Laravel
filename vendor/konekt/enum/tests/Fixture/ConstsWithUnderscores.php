@@ -15,7 +15,7 @@ use Konekt\Enum\Enum;
 
 class ConstsWithUnderscores extends Enum
 {
-    const __default   =  self::AT_HOME;
+    const __DEFAULT   =  self::AT_HOME;
 
     const WENT_FISHING = 'went fishing';
     const AT_HOME      = '@home';

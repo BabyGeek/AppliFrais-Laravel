@@ -9,15 +9,12 @@
  *
  */
 
-
 namespace Konekt\Enum\Eloquent\Tests\Models;
 
 use Konekt\Enum\Enum;
 
 class AddressStatus extends Enum
 {
-    const __default = self::UNKNOWN;
-
     const UNKNOWN   = null;
     const VALID     = 'valid';
     const INVALID   = 'invalid';

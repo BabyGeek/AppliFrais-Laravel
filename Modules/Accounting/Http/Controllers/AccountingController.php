@@ -22,7 +22,7 @@ class AccountingController extends Controller
             return view('accounting::index', compact('user', 'users'));
         }catch(ModelNotFoundException $exception)
         {
-            laraflash()->message()->content('Utilisateur introuvable')->title('Erreur')->type('danger');
+            //laraflash()->message()->content('Utilisateur introuvable')->title('Erreur')->type('danger');
             return redirect()->route('login');
         }
 

@@ -10,7 +10,6 @@
     "require": {
         "php": "^7.1.3",
         "appstract/laravel-bootstrap-components": "^1.1",
-        "coderello/laraflash": "^2.0",
         "cviebrock/eloquent-sluggable": "^4.8",
         "fideloper/proxy": "^4.0",
         "fzaninotto/faker": "^1.8",

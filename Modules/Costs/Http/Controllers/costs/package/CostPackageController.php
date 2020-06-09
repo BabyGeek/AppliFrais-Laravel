@@ -6,13 +6,11 @@ use Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Modules\Costs\Enum\CostType;
 use Modules\Costs\Enum\CostState;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Costs\Models\Costs\Cost;
 use Modules\Costs\Models\CostPackage;
-use Coderello\Laraflash\Facades\Laraflash;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Modules\Costs\Http\Requests\Costs\package\CostPackageRequest;
 use Modules\Costs\Http\Requests\Costs\package\CostPackageDeleteRequest;
@@ -32,7 +30,7 @@ class CostPackageController extends Controller
             return view('costs::costs.package.index', compact('user'));
 
         } catch (ModelNotFoundException $exception) {
-            laraflash()->message()->content('Utilisateur id : '.$user_id. ' non trouvé')->title('Utilisateur introuble')->type('warning');
+            //laraflash()->message()->content('Utilisateur id : '.$user_id. ' non trouvé')->title('Utilisateur introuble')->type('warning');
             return redirect()->route('dashboard', ['user_id' => $user->id]);
         }
     }
@@ -50,7 +48,7 @@ class CostPackageController extends Controller
             return view('costs::costs.package.create', compact('user', 'costs'));
         } catch (ModelNotFoundException $exception)
         {
-            laraflash()->message()->content('Utilisateur id : '.$user_id. ' non trouvé')->title('Utilisateur introuble')->type('warning');
+            //laraflash()->message()->content('Utilisateur id : '.$user_id. ' non trouvé')->title('Utilisateur introuble')->type('warning');
             return redirect()->route('dashboard', ['user_id' => $user->id]);
         }
     }
@@ -85,14 +83,14 @@ class CostPackageController extends Controller
                     ->associate(Cost::findOrFail($request->input('cost_id')));
             if ($package)
             {
-                laraflash()->message()->content('Frais forfait entrée avec succès')->title('Frais entrée')->type('success');
+                //laraflash()->message()->content('Frais forfait entrée avec succès')->title('Frais entrée')->type('success');
             }else
             {
-                laraflash()->message()->content("Erreur lors de l'entrée du frais forfait")->title('Frais non entrée')->type('danger');
+                //laraflash()->message()->content("Erreur lors de l'entrée du frais forfait")->title('Frais non entrée')->type('danger');
             }
             }catch(ModelNotFoundException $exception)
             {
-                laraflash()->message()->content("Erreur de connexion à la base de donnée")->title('Frais non entrée')->type('warning');
+                //laraflash()->message()->content("Erreur de connexion à la base de donnée")->title('Frais non entrée')->type('warning');
             }
             return redirect()->route('module-costs.package.index', ['user_id' => $user->id]);
     }
@@ -121,7 +119,7 @@ class CostPackageController extends Controller
             $costs = Cost::all();
             return view('costs::costs.package.edit', compact('user', 'package', 'states', 'costs'));
         }catch(ModelNotFoundException $exception){
-            laraflash()->message()->content("Le frais forfait demandé est introuvable")->title('Frais introuvable')->type('warning');
+            //laraflash()->message()->content("Le frais forfait demandé est introuvable")->title('Frais introuvable')->type('warning');
             return redirect()->route('module-costs.package.index', ['user_id' => $user_id]);
         }
     }
@@ -153,14 +151,15 @@ class CostPackageController extends Controller
 
             if($package)
             {
-                laraflash()->message()->content("Le frais forfait à bien été supprimé")->title('Frais introuvable')->type('success');
+                ////laraflash()->message()->content("Le frais forfait à bien été supprimé")->title('Frais introuvable')->type('success');
             }else
             {
-                laraflash()->message()->content("Le frais forfait n'a pas été supprimé")->title('Frais non supprimé')->type('danger');
+                flash()->overlay('Le frais forfait n\'a pas été supprimé', 'Frais introuvable')->error();
+                //laraflash()->message()->content("Le frais forfait n'a pas été supprimé")->title('Frais non supprimé')->type('danger');
             }
         }catch(ModelNotFoundException $exception)
         {
-            laraflash()->message()->content("Erreur de connexion à la base de donnée")->title('Frais introuvable')->type('warning');
+            ////laraflash()->message()->content("Erreur de connexion à la base de donnée")->title('Frais introuvable')->type('warning');
         }
         return redirect()->route('module-costs.package.index', ['user_id' => $user_id]);
     }

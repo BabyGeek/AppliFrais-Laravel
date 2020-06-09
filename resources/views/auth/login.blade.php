@@ -5,7 +5,7 @@
 
   <body class="login">
     <div>
-            {!! laraflash()->render() !!}
+            {!! //laraflash()->render() !!}
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
       <h1 class="text-center"><i class="fa fa-check-square-o"></i> <span> AppliFrais </h1>

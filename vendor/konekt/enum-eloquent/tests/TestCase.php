@@ -9,7 +9,6 @@
  *
  */
 
-
 namespace Konekt\Enum\Eloquent\Tests;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -21,7 +20,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     protected $capsule;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

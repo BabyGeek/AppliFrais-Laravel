@@ -8,7 +8,6 @@
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
                         <img src="/images/img.png" alt=""> {{ Auth::user()->first_name.' '.Auth::user()->last_name }}
-                        <span class=" fa fa-angle-down"></span>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-89px, 21px, 0px);">
                         <a class="dropdown-item" href="javascript:;"> Profile</a>
