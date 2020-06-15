@@ -9,15 +9,12 @@
  *
  */
 
-
 namespace Konekt\Enum\Eloquent\Tests\Models;
 
 use Konekt\Enum\Enum;
 
 class EloquentType extends Enum
 {
-    const __default = self::NADA;
-
     const NADA      = null;
     const WHATEVER  = 'whatever';
     const NEVERMIND = 'nevermind';

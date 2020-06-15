@@ -3,7 +3,7 @@
 namespace Modules\Costs\Http\Requests\Costs\package;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Coderello\Laraflash\Facades\Laraflash;
+use \Laraflash\Facades\Laraflash;
 
 class CostPackageDeleteRequest extends FormRequest
 {

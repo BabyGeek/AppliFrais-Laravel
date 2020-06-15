@@ -3,12 +3,12 @@
 @section('heading-buttons')
 <p>
     <a href="{{ route('module-costs.nonpackage.index', ['user_id' => $user->id]) }}" class="btn btn-sm btn-info shadow-sm">
-        <i class="fas fa-backward text-white-50"></i> Retour </a>
+        <i class="fa fa-backward text-white-50"></i> Retour </a>
 
     <a href="{{ route('module-costs.nonpackage.create', ['user_id' => $user->id]) }}" class="btn btn-sm btn-success shadow-sm">
-        <i class="fas fa-plus-circle text-white-50"></i> Entrer un frais hors forfait </a>
+        <i class="fa fa-plus-circle text-white-50"></i> Entrer un frais hors forfait </a>
 
-    <a href="#" class="btn btn-sm shadow-sm btn-primary" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question-circle text-white-50"></i> Aide</a>
+    <a href="#" class="btn btn-sm shadow-sm btn-primary" data-toggle="modal" data-target="#helpModal"><i class="fa fa-question-circle text-white-50"></i> Aide</a>
 </p>
 
     @component('modals.helpModal')
@@ -19,7 +19,8 @@
 @endsection
 
 @section('content')
-<div class="col-md-12">
+
+<div class="col">
     <div class="x_panel">
         <div class="x_title">
             <h2> Détails - {{ $nonpackage->label }}</h2>

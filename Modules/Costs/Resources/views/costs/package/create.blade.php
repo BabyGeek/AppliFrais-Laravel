@@ -3,9 +3,9 @@
 @section('heading-buttons')
 <p>
     <a href="{{ route('module-costs.package.index', ['user_id' => $user->id]) }}" class="btn btn-sm btn-info shadow-sm">
-            <i class="fas fa-backward text-white-50"></i> Retour </a>
+            <i class="fa fa-backward text-white-50"></i> Retour </a>
 
-        <a href="#" class="btn btn-sm shadow-sm btn-primary" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question-circle text-white-50"></i> Aide</a>
+        <a href="#" class="btn btn-sm shadow-sm btn-primary" data-toggle="modal" data-target="#helpModal"><i class="fa fa-question-circle text-white-50"></i> Aide</a>
 </p>
 
 @component('modals.helpModal')
@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-<div class="row">
+<div class="col">
     @include('costs::forms.costs.package.form', ['legend' => 'Formulaire pour ajouter un frais forfait', 'action' =>  route('module-costs.package.store', ['user_id'=> $user->id]), 'method'=>'POST','txtbtn' => 'Ajouter' ])
 </div>
 @endsection

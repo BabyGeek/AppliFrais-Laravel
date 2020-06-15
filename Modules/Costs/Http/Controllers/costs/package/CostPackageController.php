@@ -6,13 +6,11 @@ use Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Modules\Costs\Enum\CostType;
 use Modules\Costs\Enum\CostState;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Costs\Models\Costs\Cost;
 use Modules\Costs\Models\CostPackage;
-use Coderello\Laraflash\Facades\Laraflash;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Modules\Costs\Http\Requests\Costs\package\CostPackageRequest;
 use Modules\Costs\Http\Requests\Costs\package\CostPackageDeleteRequest;
@@ -122,7 +120,7 @@ class CostPackageController extends Controller
             return view('costs::costs.package.edit', compact('user', 'package', 'states', 'costs'));
         }catch(ModelNotFoundException $exception){
             laraflash()->message()->content("Le frais forfait demandé est introuvable")->title('Frais introuvable')->type('warning');
-            return redirect()->route('module-costs.package.index');
+            return redirect()->route('module-costs.package.index', ['user_id' => $user_id]);
         }
     }
 
@@ -156,6 +154,7 @@ class CostPackageController extends Controller
                 laraflash()->message()->content("Le frais forfait à bien été supprimé")->title('Frais introuvable')->type('success');
             }else
             {
+                flash()->overlay('Le frais forfait n\'a pas été supprimé', 'Frais introuvable')->error();
                 laraflash()->message()->content("Le frais forfait n'a pas été supprimé")->title('Frais non supprimé')->type('danger');
             }
         }catch(ModelNotFoundException $exception)

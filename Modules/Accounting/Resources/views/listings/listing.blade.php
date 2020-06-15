@@ -8,7 +8,7 @@
                     <li><i class="fa fa-building"></i> Addresse : {{ $user->address }}</li>
                     <li><i class="fa fa-at"></i> Email : {{ $user->email }}</li>
                     <li><i class="fa fa-id-badge"></i> Fiches forfait : {{ $user->packages->count() }}</li>
-                    <li><i class="fas fa-id-badge"></i> Fiches Hors forfait : {{ $user->nonpackages->count() }}</li>
+                    <li><i class="fa fa-id-badge"></i> Fiches Hors forfait : {{ $user->nonpackages->count() }}</li>
                 </ul>
             </div>
             <div class="right col-xs-5 text-center">

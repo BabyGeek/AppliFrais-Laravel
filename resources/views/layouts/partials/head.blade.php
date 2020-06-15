@@ -11,21 +11,25 @@
 
         <!-- Bootstrap -->
         <link href="/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
         <!-- Font Awesome -->
-        <script src="https://use.fontawesome.com/0eb6a14139.js"></script>
-        
+        <link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <!-- NProgress -->
         <link href="/css/nprogress/nprogress.css" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="/css/iCheck/skins/flat/green.css" rel="stylesheet">
+        
+        <!-- bootstrap-progressbar -->
+        <link href="/css/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+        <!-- JQVMap -->
+        <link href="/css/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+        <!-- bootstrap-daterangepicker -->
+        <link href="/css/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
         <!-- Custom Theme Style -->
         <link href="/css/custom.min.css" rel="stylesheet">
 
-        <!-- Green CSS -->
-        <link href="/css/iCheck/skins/flat/green.css" rel="stylesheet">
-
-        <!-- DateRangePicker CSS -->
-        <link href="/css/daterangepicker/daterangepicker.css" rel="stylesheet">
+        <!-- Custom App CSS -->
+        <link href="/css/style.css" rel="stylesheet">
 
         <!-- flatpickr CSS et theme Airbnb-->
         <link href="/css/flatpickr/dist/flatpickr.css" rel="stylesheet">

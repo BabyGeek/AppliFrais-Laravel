@@ -1,4 +1,4 @@
-<p align="center"><img alt="Laraflash" src="https://i.imgur.com/qo7MxeN.png" width="380"></p>
+<p align="center"><img alt="Laraflash" src="https://coderello.com/images/packages/laraflash.png" width="380"></p>
 
 <p align="center"><b>Laraflash</b> provides a handy way to work with the flash messages.</p>
 
@@ -10,7 +10,7 @@
   <a href="https://scrutinizer-ci.com/g/coderello/laraflash/code-structure"><img src="https://img.shields.io/scrutinizer/coverage/g/coderello/laraflash.svg?style=flat-square" alt="Coverage Status"></a>
 </p>
 
-## Install
+## Installation
 
 You can install this package via composer using this command:
 

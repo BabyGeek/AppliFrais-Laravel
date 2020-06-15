@@ -6,7 +6,7 @@ use Konekt\Enum\Enum;
 
 class FallbackEnum extends Enum
 {
-    const __default = self::NO;
+    const __DEFAULT = self::NO;
     const YES       = 'yes';
     const NO        = 'no';
 
