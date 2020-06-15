@@ -22,6 +22,7 @@ return array(
     '6124b4c8570aa390c21fafd04a26c69f' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
     '801c31d8ed748cfa537fa45402288c95' => $vendorDir . '/psy/psysh/src/functions.php',
     '0d8253363903f0ac7b0978dcde4e28a0' => $vendorDir . '/beyondcode/laravel-dump-server/helpers.php',
+    '212ea3ac614b911dae7ba1a47ed5a5c2' => $vendorDir . '/coderello/laraflash/src/helpers.php',
     'db055f062c801e0a13166329dbdffe75' => $vendorDir . '/konekt/enum-eloquent/src/functions.php',
     '9f394da3192a168c4633675768d80428' => $vendorDir . '/nwidart/laravel-modules/src/helpers.php',
 );

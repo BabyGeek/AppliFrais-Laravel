@@ -5,10 +5,9 @@
 
 
 <body class="nav-md">
+    {!! laraflash()->render() !!}
     <div class="container body">
         <div class="main_container">
-            @include('flash::message')
-            @dump(session())
             @if(Auth::user())
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
@@ -113,9 +112,6 @@
     <script src="/js/flatpickr/dist/l10n/fr.js"></script>
 
     @yield('script')
-    <script>
-        $('#flash-overlay-modal').modal();
-    </script>
 </body>
 
 </html>

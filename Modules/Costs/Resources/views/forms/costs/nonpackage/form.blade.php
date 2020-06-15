@@ -38,7 +38,7 @@
                     @endcomponent
                 </div>
                 <div class="form-group">
-                    @component('components.field',[ 'type' => 'file', 'label' => 'Justificatif', 'name' => 'justificate', 'model' => (isset($nonpackage)) ? $nonpackage : null, 'attrs' => ['titlz' => 'Seulement les extensions .pdf, .jpg et .png sont accéptées', 'class' => 'custom-file-input', 'multiple' => null, ], 'attrsLabel' => ['class' => 'custom-file-label', ] ])
+                    @component('components.file',['label' => 'Justificatif', 'name' => 'justificate', 'model' => (isset($nonpackage)) ? $nonpackage : null, 'attrs' => ['title' => 'Seulement les extensions .pdf, .jpg et .png sont accéptées', 'multiple' => null, ] ])
                         Justificatif :
                     @endcomponent
                 </div>

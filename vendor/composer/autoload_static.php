@@ -23,6 +23,7 @@ class ComposerStaticInit584977037f7d99eb20dd79376c66a00f
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        '212ea3ac614b911dae7ba1a47ed5a5c2' => __DIR__ . '/..' . '/coderello/laraflash/src/helpers.php',
         'db055f062c801e0a13166329dbdffe75' => __DIR__ . '/..' . '/konekt/enum-eloquent/src/functions.php',
         '9f394da3192a168c4633675768d80428' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/helpers.php',
     );
@@ -143,6 +144,7 @@ class ComposerStaticInit584977037f7d99eb20dd79376c66a00f
         array (
             'Cviebrock\\EloquentSluggable\\' => 28,
             'Cron\\' => 5,
+            'Coderello\\Laraflash\\' => 20,
             'Cocur\\Slugify\\' => 14,
             'Carbon\\' => 7,
         ),
@@ -409,6 +411,10 @@ class ComposerStaticInit584977037f7d99eb20dd79376c66a00f
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
+        'Coderello\\Laraflash\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/coderello/laraflash/src',
+        ),
         'Cocur\\Slugify\\' => 
         array (
             0 => __DIR__ . '/..' . '/cocur/slugify/src',
@@ -575,6 +581,27 @@ class ComposerStaticInit584977037f7d99eb20dd79376c66a00f
         'Cocur\\Slugify\\RuleProvider\\RuleProviderInterface' => __DIR__ . '/..' . '/cocur/slugify/src/RuleProvider/RuleProviderInterface.php',
         'Cocur\\Slugify\\Slugify' => __DIR__ . '/..' . '/cocur/slugify/src/Slugify.php',
         'Cocur\\Slugify\\SlugifyInterface' => __DIR__ . '/..' . '/cocur/slugify/src/SlugifyInterface.php',
+        'Coderello\\Laraflash\\Exceptions\\InvalidArgumentException' => __DIR__ . '/..' . '/coderello/laraflash/src/Exceptions/InvalidArgumentException.php',
+        'Coderello\\Laraflash\\Exceptions\\InvalidDelayException' => __DIR__ . '/..' . '/coderello/laraflash/src/Exceptions/InvalidDelayException.php',
+        'Coderello\\Laraflash\\Exceptions\\InvalidHopsAmountException' => __DIR__ . '/..' . '/coderello/laraflash/src/Exceptions/InvalidHopsAmountException.php',
+        'Coderello\\Laraflash\\Exceptions\\SkinNotFoundException' => __DIR__ . '/..' . '/coderello/laraflash/src/Exceptions/SkinNotFoundException.php',
+        'Coderello\\Laraflash\\Facades\\Laraflash' => __DIR__ . '/..' . '/coderello/laraflash/src/Facades/Laraflash.php',
+        'Coderello\\Laraflash\\FlashMessage\\FlashMessage' => __DIR__ . '/..' . '/coderello/laraflash/src/FlashMessage/FlashMessage.php',
+        'Coderello\\Laraflash\\FlashMessage\\FlashMessageFactory' => __DIR__ . '/..' . '/coderello/laraflash/src/FlashMessage/FlashMessageFactory.php',
+        'Coderello\\Laraflash\\FlashMessage\\FlashMessageFactoryContract' => __DIR__ . '/..' . '/coderello/laraflash/src/FlashMessage/FlashMessageFactoryContract.php',
+        'Coderello\\Laraflash\\FlashMessage\\FlashMessageRendererContract' => __DIR__ . '/..' . '/coderello/laraflash/src/FlashMessage/FlashMessageRendererContract.php',
+        'Coderello\\Laraflash\\FlashMessage\\ViewFlashMessageRenderer' => __DIR__ . '/..' . '/coderello/laraflash/src/FlashMessage/ViewFlashMessageRenderer.php',
+        'Coderello\\Laraflash\\Laraflash\\Laraflash' => __DIR__ . '/..' . '/coderello/laraflash/src/Laraflash/Laraflash.php',
+        'Coderello\\Laraflash\\Laraflash\\LaraflashPreparer' => __DIR__ . '/..' . '/coderello/laraflash/src/Laraflash/LaraflashPreparer.php',
+        'Coderello\\Laraflash\\Laraflash\\LaraflashPreparerContract' => __DIR__ . '/..' . '/coderello/laraflash/src/Laraflash/LaraflashPreparerContract.php',
+        'Coderello\\Laraflash\\Laraflash\\LaraflashRenderer' => __DIR__ . '/..' . '/coderello/laraflash/src/Laraflash/LaraflashRenderer.php',
+        'Coderello\\Laraflash\\Laraflash\\LaraflashRendererContract' => __DIR__ . '/..' . '/coderello/laraflash/src/Laraflash/LaraflashRendererContract.php',
+        'Coderello\\Laraflash\\MessagesStorage\\ArrayMessagesStorage' => __DIR__ . '/..' . '/coderello/laraflash/src/MessagesStorage/ArrayMessagesStorage.php',
+        'Coderello\\Laraflash\\MessagesStorage\\MessagesStorageContract' => __DIR__ . '/..' . '/coderello/laraflash/src/MessagesStorage/MessagesStorageContract.php',
+        'Coderello\\Laraflash\\MessagesStorage\\MessagesStorageManager' => __DIR__ . '/..' . '/coderello/laraflash/src/MessagesStorage/MessagesStorageManager.php',
+        'Coderello\\Laraflash\\MessagesStorage\\SessionMessagesStorage' => __DIR__ . '/..' . '/coderello/laraflash/src/MessagesStorage/SessionMessagesStorage.php',
+        'Coderello\\Laraflash\\Middleware\\HandleLaraflash' => __DIR__ . '/..' . '/coderello/laraflash/src/Middleware/HandleLaraflash.php',
+        'Coderello\\Laraflash\\Providers\\LaraflashServiceProvider' => __DIR__ . '/..' . '/coderello/laraflash/src/Providers/LaraflashServiceProvider.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',
@@ -3688,7 +3715,7 @@ class ComposerStaticInit584977037f7d99eb20dd79376c66a00f
         'Symfony\\Component\\Debug\\FatalErrorHandler\\ClassNotFoundFatalErrorHandler' => __DIR__ . '/..' . '/symfony/debug/FatalErrorHandler/ClassNotFoundFatalErrorHandler.php',
         'Symfony\\Component\\Debug\\FatalErrorHandler\\FatalErrorHandlerInterface' => __DIR__ . '/..' . '/symfony/debug/FatalErrorHandler/FatalErrorHandlerInterface.php',
         'Symfony\\Component\\Debug\\FatalErrorHandler\\UndefinedFunctionFatalErrorHandler' => __DIR__ . '/..' . '/symfony/debug/FatalErrorHandler/UndefinedFunctionFatalErrorHandler.php',
-        'Symfony\\Component\\Debug\\FatalErrorHandler\\UndefinedMethodFatalErrorHandler' => __DIR__ . '/..' . '/symfony/debug/FatalErrorHandler/UndefinedMethodFatalErrorHandler 2.php',
+        'Symfony\\Component\\Debug\\FatalErrorHandler\\UndefinedMethodFatalErrorHandler' => __DIR__ . '/..' . '/symfony/debug/FatalErrorHandler/UndefinedMethodFatalErrorHandler.php',
         'Symfony\\Component\\ErrorHandler\\BufferingLogger' => __DIR__ . '/..' . '/symfony/error-handler/BufferingLogger.php',
         'Symfony\\Component\\ErrorHandler\\Debug' => __DIR__ . '/..' . '/symfony/error-handler/Debug.php',
         'Symfony\\Component\\ErrorHandler\\DebugClassLoader' => __DIR__ . '/..' . '/symfony/error-handler/DebugClassLoader.php',

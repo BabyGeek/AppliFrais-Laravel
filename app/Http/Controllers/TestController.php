@@ -23,7 +23,7 @@ class TestController extends Controller
      */
     public function index()
     {
-         //laraflash()->content("Problème avec votre validation de suppression")->title('Problème de suppression')->type('warning');
+         laraflash()->message()->content("Problème avec votre validation de suppression")->title('Problème de suppression')->type('warning');
         return redirect()->route('dashboard');
     }
 }
