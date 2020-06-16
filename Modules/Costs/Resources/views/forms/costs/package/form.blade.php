@@ -14,7 +14,7 @@
         </div>
         <div class="x_content">
             <br>
-            <form action="{{ $action }}" class="form-horizontal form-label-left" method='POST'>
+            <form action="{{ $action }}" method='POST'>
                 @csrf()
                 @if(isset($method))
                     @method($method)
@@ -34,7 +34,7 @@
                         @endcomponent
                 </div>
                 <div class="form-group">
-                    @component('components.field',[ 'type' => 'text', 'label' => 'Quantité', 'name' => 'value', 'model' => (isset($package)) ? $package : null, 'attrs' => ['placeholder' => 'Entrez la quantité de frais forfaits', ], ])
+                    @component('components.field',[ 'type' => 'text', 'label' => 'Quantité', 'name' => 'value', 'model' => (isset($package)) ? $package : null, 'attrs' => ['placeholder' => 'Entrez la quantité de frais forfaits', 'class' => 'mb-4 form-control'], ])
                         Quantité :
                     @endcomponent
                 </div>

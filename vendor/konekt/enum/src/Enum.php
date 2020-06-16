@@ -18,7 +18,7 @@ namespace Konekt\Enum;
 abstract class Enum
 {
     /** Constant with default value for creating enum object */
-    const __default = null;
+    const __DEFAULT = null;
 
     /** @var mixed|null */
     protected $value;
@@ -39,12 +39,13 @@ abstract class Enum
         self::bootClass();
 
         if (is_null($value)) {
-            $value = static::__default;
+            $value = static::__DEFAULT;
         }
 
+        /** @todo Allow unknown values to fallback to default */
         if (!static::has($value)) {
             if (static::$unknownValuesFallbackToDefault) {
-                $value = static::__default;
+                $value = static::__DEFAULT;
             } else {
                 throw new \UnexpectedValueException(
                     sprintf('Given value (%s) is not in enum `%s`',
@@ -183,11 +184,11 @@ abstract class Enum
     }
 
     /**
-     * Returns the default value of the class. Equals to the __default constant.
+     * Returns the default value of the class. Equals to the __DEFAULT constant.
      */
     public static function defaultValue()
     {
-        return static::__default;
+        return static::__DEFAULT;
     }
 
     /**
@@ -215,7 +216,7 @@ abstract class Enum
     }
 
     /**
-     * Returns the consts (except for __default) of the class.
+     * Returns the consts (except for __DEFAULT) of the class.
      *
      * @return array
      */
@@ -352,7 +353,7 @@ abstract class Enum
     {
         if (!array_key_exists(static::class, self::$meta)) {
             self::$meta[static::class] = (new \ReflectionClass(static::class))->getConstants();
-            unset(self::$meta[static::class]['__default']);
+            unset(self::$meta[static::class]['__DEFAULT']);
 
             if (method_exists(static::class, 'boot')) {
                 static::boot();

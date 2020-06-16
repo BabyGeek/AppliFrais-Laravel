@@ -1,12 +1,15 @@
 # Konekt Enum Changelog
 
-## 2.3
+## 3.0
 
-### 2.3.0
-##### 2019-06-25
+### 3.0.0
+###### 2019-06-24
 
-- It is possible to set fallback to default for unknown values (Backport from 3.0)
-- Tested against early version of PHP 7.4
+- The `__default` const has been renamed to `__DEFAULT` for full PSR-1 compliance.
+- It is possible to set fallback to default for unknown values.
+- Rest of features are equivalent to v2.2.0.
+- PHP 7.0 support has been dropped.
+- Early PHP 7.4 support (as-is - since it hasn't been released yet).
 
 ## 2.2
 
@@ -64,7 +67,7 @@ Development of v2 has been started.
 ###### 2016-12-14
 
 - Display texts can be fetched dynamically via callback method
- 
+
 ## 1.1
 
 ### 1.1.0

@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Modules\Costs\Http\Requests\Costs\nonpackage\CostNonPackageRequest;
 use Modules\Justificates\Models\Justificate;
 use Modules\Costs\Http\Requests\Costs\nonpackage\CostNonPackageDeleteRequest;
-use Coderello\Laraflash\Facades\Laraflash;
 
 class CostNonPackageController extends Controller
 {
@@ -178,21 +177,21 @@ class CostNonPackageController extends Controller
 
                 }catch(ModelNotFoundException $exception)
                 {
-                    laraflash()->content("Erreur de connexion à la base de donnée")->title('Forfait hors forfait introuvable')->type('warning');
+                    laraflash()->message()->content("Erreur de connexion à la base de donnée")->title('Forfait hors forfait introuvable')->type('warning');
                 }
             }
 
             if ($nonpackage)
             {
-                laraflash()->content('Frais hors forfait mit à jour avec succès')->title('Forfait hors forfait ajouté')->type('success');
+                laraflash()->message()->content('Frais hors forfait mit à jour avec succès')->title('Forfait hors forfait ajouté')->type('success');
             }else
             {
-                laraflash()->content("Erreur lors de la mise à jour du frais hors forfait")->title('Forfait hors forfait non ajouté')->type('danger');
+                laraflash()->message()->content("Erreur lors de la mise à jour du frais hors forfait")->title('Forfait hors forfait non ajouté')->type('danger');
             }
 
         }catch(ModelNotFoundException $exception)
         {
-            laraflash()->content("Erreur de connexion à la base de donnée")->title('Forfait hors forfait introuvable')->type('warning');
+            laraflash()->message()->content("Erreur de connexion à la base de donnée")->title('Forfait hors forfait introuvable')->type('warning');
         }
         return redirect()->route('module-costs.nonpackage.index', ['user_id' => $user->id]);
     }
@@ -222,14 +221,14 @@ class CostNonPackageController extends Controller
 
             if($nonpackage->delete())
             {
-                laraflash()->content("Le frais hors forfait a bien été supprimé")->title('Forfait hors forfait supprimé')->type('success');
+                laraflash()->message()->content("Le frais hors forfait a bien été supprimé")->title('Forfait hors forfait supprimé')->type('success');
             }else
             {
-                laraflash()->content("Le frais hors forfait n'a pas été supprimé")->title('Forfait hors forfait non supprimé')->type('danger');
+                laraflash()->message()->content("Le frais hors forfait n'a pas été supprimé")->title('Forfait hors forfait non supprimé')->type('danger');
             }
         }catch(ModelNotFoundException $exception)
         {
-            laraflash()->content("Erreur de connexion à la base de donnée")->title('Forfait hors forfait introuvable')->type('warning');
+            laraflash()->message()->content("Erreur de connexion à la base de donnée")->title('Forfait hors forfait introuvable')->type('warning');
         }
         return redirect()->route('module-costs.nonpackage.index', ['user_id' => $user_id]);
     }

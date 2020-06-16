@@ -4,41 +4,44 @@ cache:
   directories:
   - "$HOME/.composer/cache"
 
+php:
+  - '7.1'
+  - '7.2'
+  - '7.3'
+  - '7.4'
+
+env:
+  - ENUM=2 LARAVEL=5.4
+  - ENUM=2 LARAVEL=5.5
+  - ENUM=2 LARAVEL=5.6
+  - ENUM=2 LARAVEL=5.7
+  - ENUM=2 LARAVEL=5.8
+  - ENUM=2 LARAVEL=6.18
+  - ENUM=2 LARAVEL=7.0
+  - ENUM=3 LARAVEL=5.4
+  - ENUM=3 LARAVEL=5.5
+  - ENUM=3 LARAVEL=5.6
+  - ENUM=3 LARAVEL=5.7
+  - ENUM=3 LARAVEL=5.8
+  - ENUM=3 LARAVEL=6.18
+  - ENUM=3 LARAVEL=7.0
+
 matrix:
-  include:
-  - php: 7.0
-    env: LARAVEL=5.0
-  - php: 7.0
-    env: LARAVEL=5.1
-  - php: 7.0
-    env: LARAVEL=5.2
-  - php: 7.0
-    env: LARAVEL=5.3
-  - php: 7.0
-    env: LARAVEL=5.4
-  - php: 7.0
-    env: LARAVEL=5.5
-  - php: 7.1
-    env: LARAVEL=5.4
-  - php: 7.1
-    env: LARAVEL=5.5
-  - php: 7.1
-    env: LARAVEL=5.6
-  - php: 7.1
-    env: LARAVEL=5.7
-  - php: 7.2
-    env: LARAVEL=5.4
-  - php: 7.2
-    env: LARAVEL=5.5
-  - php: 7.2
-    env: LARAVEL=5.6
-  - php: 7.2
-    env: LARAVEL=5.7
+  exclude:
+    - php: '7.1'
+      env: 'ENUM=2 LARAVEL=6.18'
+    - php: '7.1'
+      env: 'ENUM=3 LARAVEL=6.18'
+    - php: '7.1'
+      env: 'ENUM=2 LARAVEL=7.0'
+    - php: '7.1'
+      env: 'ENUM=3 LARAVEL=7.0'
 
 script:
 - vendor/bin/phpunit -c phpunit.xml tests/
 
 before_install:
+- composer require "konekt/enum:${ENUM}.*" --no-update -v
 - composer require "illuminate/database:${LARAVEL}.*" --no-update -v
 - composer require "illuminate/events:${LARAVEL}.*" --no-update -v
 

@@ -13,7 +13,7 @@ class CostState extends Enum
     const CLOSED = 'closed';
     const REFUND = 'refund';
     const REFUSED = 'refused';
-    const VALIDATE = 'validate';
+    const VALIDATE = 'validated';
     const PAYEMENT = 'payement';
 
 

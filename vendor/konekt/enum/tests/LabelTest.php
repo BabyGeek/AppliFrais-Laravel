@@ -53,7 +53,7 @@ class LabelTest extends TestCase
         $one = Sample123::ONE();
 
         $this->assertEquals('1', $one->label());
-        $this->assertInternalType('string', $one->label());
+        $this->assertIsString($one->label());
     }
 
     /**
@@ -135,8 +135,8 @@ class LabelTest extends TestCase
 
         // Test empty value
         $zdish = new SampleLabelViaBootMethod();
-        $this->assertEquals(SampleLabelViaBootMethod::__default, $zdish->label());
-        $this->assertEquals(SampleLabelViaBootMethod::__default, (string) $zdish);
+        $this->assertEquals(SampleLabelViaBootMethod::__DEFAULT, $zdish->label());
+        $this->assertEquals(SampleLabelViaBootMethod::__DEFAULT, (string) $zdish);
     }
 
     /**

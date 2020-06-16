@@ -4,7 +4,7 @@
         <ul class="nav side-menu">
             <li><a href="{{ route('dashboard',['user_id' => Auth::user()->id]) }}"><i class="fa fa-home"></i> Accueil </a></li>
             <li><a><i class="fa fa-edit"></i> Frais <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
+                <ul class="nav child_menu" style="display: none;">
                     <li><a href="{{ route('module-costs.package.index',['user_id'=>Auth::user()->id]) }}">Frais forfait</a></li>
                     <li><a href="{{ route('module-costs.nonpackage.index',['user_id'=>Auth::user()->id]) }}">Frais hors forfait</a></li>
                 </ul>

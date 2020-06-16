@@ -3,7 +3,7 @@
 namespace Modules\Costs\Http\Requests\Costs\nonpackage\justificate;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Coderello\Laraflash\Facades\Laraflash;
+use \Laraflash\Facades\Laraflash;
 
 
 class CostNonPackageJustificateDeleteRequest extends FormRequest
